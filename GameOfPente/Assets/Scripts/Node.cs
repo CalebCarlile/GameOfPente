@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
 
+	[SerializeField] SpriteRenderer m_spriteRenderer = null;
+
 	public enum eColor
 	{
 		WHITE,
@@ -19,7 +21,14 @@ public class Node : MonoBehaviour {
 		WEST
 	}
 
-	public eColor Color {get; set;}
+	public eColor Color {get {return Color;} set {Color = value; SetSpriteColor(value);}}
+
+
+	private void SetSpriteColor(eColor color)
+	{
+
+	}
+
 
 	public Node NorthNode;
 	public Node EastNode;
