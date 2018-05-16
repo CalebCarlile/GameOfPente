@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour {
+public class Node : MonoBehaviour
+{
+
+
+	SpriteRenderer spriteRenderer = null;
+
+	void Start()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	public enum eColor
 	{
@@ -19,7 +28,14 @@ public class Node : MonoBehaviour {
 		WEST
 	}
 
-	public eColor Color {get; set;}
+	public eColor Color {get {return Color;} set {Color = value; SetSpriteColor(value);}}
+
+
+	private void SetSpriteColor(eColor color)
+	{
+
+	}
+
 
 	public Node NorthNode;
 	public Node EastNode;
