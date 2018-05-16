@@ -43,6 +43,7 @@ public class Node : MonoBehaviour {
 
 			break;
 		}
+		return null;
 	}
 
 	public void SetNode(Direction dir, Node node)
