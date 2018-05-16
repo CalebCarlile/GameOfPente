@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour {
+public class Node : MonoBehaviour
+{
 
-	[SerializeField] SpriteRenderer m_spriteRenderer = null;
+
+	SpriteRenderer spriteRenderer = null;
+
+	void Start()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	public enum eColor
 	{
@@ -52,6 +59,7 @@ public class Node : MonoBehaviour {
 
 			break;
 		}
+		return null;
 	}
 
 	public void SetNode(Direction dir, Node node)
