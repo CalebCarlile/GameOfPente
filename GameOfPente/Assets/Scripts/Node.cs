@@ -13,21 +13,6 @@ public class Node : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	public enum eColor
-	{
-		WHITE,
-		BLACK,
-		EMPTY
-	}
-
-	public enum Direction
-	{
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST
-	}
-
 	public eColor Color {get {return Color;} set {Color = value; SetSpriteColor(value);}}
 
 

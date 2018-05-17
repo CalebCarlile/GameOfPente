@@ -6,7 +6,7 @@ public class BoardManager : Singleton<BoardManager>
 {
 	[SerializeField] GameObject NodeTemplate = null;
 	List<SpriteRenderer> Lines = new List<SpriteRenderer>();
-	Node[][] GameObject;
+	GameObject[][] Nodes;
 
 	public void Initialize(int size)
 	{
