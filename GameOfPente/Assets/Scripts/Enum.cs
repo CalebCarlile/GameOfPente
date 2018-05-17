@@ -4,7 +4,9 @@
 	{
 		WHITE,
 		BLACK,
-		EMPTY
+		EMPTY,
+		W_HOVER,
+		B_HOVER
 	}
 
 	public enum Direction

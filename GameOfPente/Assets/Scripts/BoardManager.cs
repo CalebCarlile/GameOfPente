@@ -35,6 +35,8 @@ public class BoardManager : Singleton<BoardManager>
 		
 	}
 
+	
+
 	//Specific check functions here:
 
 }
