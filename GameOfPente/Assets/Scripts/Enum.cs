@@ -2,9 +2,9 @@
 
     public enum eColor
 	{
-		WHITE,
+		EMPTY,
 		BLACK,
-		EMPTY
+		WHITE
 	}
 
 	public enum Direction
@@ -22,6 +22,6 @@
     
 	public enum PlayerTurn
 	{
-		PLAYER1,
-		PLAYER2
+		BLACK_PLAYER1,
+		WHITE_PLAYER2
 	}

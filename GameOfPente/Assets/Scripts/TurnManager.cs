@@ -7,17 +7,17 @@ public class TurnManager : Singleton<TurnManager>
 
 	public string player1Name;
 	public string player2Name;
-	public PlayerTurn playerTurn = PlayerTurn.PLAYER1;
+	public PlayerTurn playerTurn = PlayerTurn.BLACK_PLAYER1;
 
 	public void NextTurn()
 	{
 		switch(playerTurn)
 		{
-			case PlayerTurn.PLAYER1:
-				playerTurn = PlayerTurn.PLAYER2;
+			case PlayerTurn.BLACK_PLAYER1:
+				playerTurn = PlayerTurn.WHITE_PLAYER2;
 				break;
-			case PlayerTurn.PLAYER2:
-				playerTurn = PlayerTurn.PLAYER1;
+			case PlayerTurn.WHITE_PLAYER2:
+				playerTurn = PlayerTurn.BLACK_PLAYER1;
 				break;
 		}
 	}
