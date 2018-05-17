@@ -6,6 +6,6 @@ public class Computer : MonoBehaviour
 {
 	public static Node MakeMove()
 	{
-        return null;
+		return null;
 	}
 }
