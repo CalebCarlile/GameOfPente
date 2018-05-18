@@ -103,17 +103,18 @@ public class BoardManager : Singleton<BoardManager>
 
     private bool IsUnblocked(Line line)
     {
+        int sidesBlocked = 0;
         Node previous = line.nodes[0].GetNode(line.opposite);
         if (previous == null || previous.Color != eColor.EMPTY)
         {
-            return false;
+            sidesBlocked++;
         }
         Node next = line.nodes[line.nodes.Count - 1].GetNode(line.direction);
         if (next == null || next.Color != eColor.EMPTY)
         {
-            return false;
+            sidesBlocked++;
         }
-        return true;
+        return sidesBlocked < 2;
     }
 
     public bool TriaCreated(Node last)
@@ -126,19 +127,22 @@ public class BoardManager : Singleton<BoardManager>
         };
         foreach (Line line in triaLines)
         {
-            for (int i = 0; i < line.nodes.Count - 4; i++)
+            foreach (List<eColor> tria in trias)
             {
-                List<Node> nodeLine = line.nodes.GetRange(0, 3);
-                List<eColor> colors = new List<eColor>();
-                foreach (Node node in nodeLine)
+                for (int i = 0; i < line.nodes.Count - tria.Count; i++)
                 {
-                    colors.Add(node.Color);
-                }
-                if (trias.Contains(colors))
-                {
-                    if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                    List<Node> nodeLine = line.nodes.GetRange(i, tria.Count);
+                    List<eColor> colors = new List<eColor>();
+                    foreach (Node node in nodeLine)
                     {
-                        return true;
+                        colors.Add(node.Color);
+                    }
+                    if (trias.Contains(colors))
+                    {
+                        if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                        {
+                            return true;
+                        }
                     }
                 }
             }
@@ -150,7 +154,25 @@ public class BoardManager : Singleton<BoardManager>
     {
         List<Line> tesseraLines = GetLines(last, 4);
         List<eColor> tessera = new List<eColor>() { last.Color, last.Color, last.Color, last.Color };
-
+        foreach (Line line in tesseraLines)
+        {
+            for (int i = 0; i < line.nodes.Count - 4; i++)
+            {
+                List<Node> nodeLine = line.nodes.GetRange(i, 4);
+                List<eColor> colors = new List<eColor>();
+                foreach (Node node in nodeLine)
+                {
+                    colors.Add(node.Color);
+                }
+                if (tessera == colors)
+                {
+                    if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
@@ -158,6 +180,22 @@ public class BoardManager : Singleton<BoardManager>
     {
         List<Line> winLines = GetLines(last, 5);
         List<eColor> win = new List<eColor>() { last.Color, last.Color, last.Color, last.Color, last.Color };
+        foreach (Line line in winLines)
+        {
+            for (int i = 0; i < line.nodes.Count - 5; i++)
+            {
+                List<Node> nodeLine = line.nodes.GetRange(i, 5);
+                List<eColor> colors = new List<eColor>();
+                foreach (Node node in nodeLine)
+                {
+                    colors.Add(node.Color);
+                }
+                if (win == colors)
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
