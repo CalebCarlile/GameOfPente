@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class PenteBoardValidation {
 
@@ -21,7 +23,65 @@ public class PenteBoardValidation {
         // Vertical, horizontal, diagonal
         BoardManager bm = new BoardManager();
         bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        Node node1 = bm.Nodes[0, 1].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
 
+        Node node2 = bm.Nodes[0, 2].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[0, 3].GetComponent<Node>().Color = eColor.BLACK;
+
+        List<Node> nodes = bm.FindCaptures(bm.Nodes[0, 3].GetComponent<Node>());
+
+
+        Assert.AreSame(nodes[0], node2);
+        Assert.AreSame(nodes[1], node1);
+        bm.CheckBoard(bm.Nodes[0, 3].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[0, 1].GetComponent<Node>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.Nodes[0, 2].GetComponent<Node>().Color == eColor.EMPTY);
+
+
+
+        bm = new BoardManager();
+        bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        node1 = bm.Nodes[1, 1].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
+
+        node2 = bm.Nodes[2, 2].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[3, 3].GetComponent<Node>().Color = eColor.BLACK;
+
+        nodes = bm.FindCaptures(bm.Nodes[3, 3].GetComponent<Node>());
+
+
+        Assert.AreSame(nodes[0], node2);
+        Assert.AreSame(nodes[1], node1);
+        bm.CheckBoard(bm.Nodes[3, 3].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[1, 1].GetComponent<Node>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.Nodes[2, 2].GetComponent<Node>().Color == eColor.EMPTY);
+
+        bm = new BoardManager();
+        bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        node1 = bm.Nodes[1, 0].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
+
+        node2 = bm.Nodes[2, 0].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[3, 0].GetComponent<Node>().Color = eColor.BLACK;
+
+        nodes = bm.FindCaptures(bm.Nodes[3, 0].GetComponent<Node>());
+
+
+        Assert.AreSame(nodes[0], node2);
+        Assert.AreSame(nodes[1], node1);
+        bm.CheckBoard(bm.Nodes[3, 0].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<Node>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<Node>().Color == eColor.EMPTY);
     }
 
     [Test]
@@ -33,7 +93,52 @@ public class PenteBoardValidation {
     [Test]
     public void TestFalseCapture()
     {
+        BoardManager bm = new BoardManager();
+        bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        Node node1 = bm.Nodes[0, 1].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
 
+        Node node2 = bm.Nodes[0, 2].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[0, 3].GetComponent<Node>().Color = eColor.BLACK;
+
+        bm.CheckBoard(bm.Nodes[0, 2].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[0, 1].GetComponent<Node>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.Nodes[0, 2].GetComponent<Node>().Color == eColor.WHITE);
+
+
+
+        bm = new BoardManager();
+        bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        node1 = bm.Nodes[1, 1].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
+
+        node2 = bm.Nodes[2, 2].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[3, 3].GetComponent<Node>().Color = eColor.BLACK;
+
+        bm.CheckBoard(bm.Nodes[2, 2].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[1, 1].GetComponent<Node>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.Nodes[2, 2].GetComponent<Node>().Color == eColor.WHITE);
+
+        bm = new BoardManager();
+        bm.Initialize(19);
+        bm.Nodes[0, 0].GetComponent<Node>().Color = eColor.BLACK;
+        node1 = bm.Nodes[1, 0].GetComponent<Node>();
+        node1.Color = eColor.WHITE;
+
+        node2 = bm.Nodes[2, 0].GetComponent<Node>();
+        node2.Color = eColor.WHITE;
+
+        bm.Nodes[3, 0].GetComponent<Node>().Color = eColor.BLACK;
+
+        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<Node>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<Node>().Color == eColor.WHITE);
     }
 
     // Test tria finder
