@@ -74,10 +74,10 @@ public class Node : MonoBehaviour
 			eColor curPlayerColor = eColor.EMPTY;
 			switch(TurnManager.Instance.playerTurn)
 			{
-				case PlayerTurn.PLAYER1:
+				case PlayerTurn.BLACK_PLAYER1:
 					curPlayerColor = eColor.B_HOVER;
 					break;
-				case PlayerTurn.PLAYER2:
+				case PlayerTurn.WHITE_PLAYER2:
 					curPlayerColor = eColor.W_HOVER;
 					break;
 			}
@@ -98,10 +98,10 @@ public class Node : MonoBehaviour
 			eColor curPlayerColor = eColor.EMPTY;
 			switch(TurnManager.Instance.playerTurn)
 			{
-				case PlayerTurn.PLAYER1:
+				case PlayerTurn.BLACK_PLAYER1:
 					curPlayerColor = eColor.BLACK;
 					break;
-				case PlayerTurn.PLAYER2:
+				case PlayerTurn.WHITE_PLAYER2:
 					curPlayerColor = eColor.WHITE;
 					break;
 			}
