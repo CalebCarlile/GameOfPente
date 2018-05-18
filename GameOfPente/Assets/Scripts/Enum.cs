@@ -2,9 +2,11 @@
 
     public enum eColor
 	{
-		EMPTY,
+		WHITE,
 		BLACK,
-		WHITE
+		EMPTY,
+		W_HOVER,
+		B_HOVER
 	}
 
 	public enum Direction
