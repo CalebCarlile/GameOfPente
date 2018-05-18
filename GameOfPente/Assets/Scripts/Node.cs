@@ -32,10 +32,10 @@ public class Node : MonoBehaviour
 				spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 				break;
 			case eColor.W_HOVER:
-				spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+				spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
 				break;
 			case eColor.B_HOVER:
-				spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+				spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
 				break;
 			case eColor.EMPTY:
 				spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
