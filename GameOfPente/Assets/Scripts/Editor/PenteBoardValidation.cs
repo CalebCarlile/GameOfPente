@@ -10,7 +10,6 @@ public class PenteBoardValidation {
     [Test]
     public void TestIntersectionNeighbors()
     {
-        // Corner, edge, middle
     }
 
     // Test captures, single, multiple, both players, false capture where player boxes themselves in

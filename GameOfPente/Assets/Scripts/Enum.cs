@@ -12,14 +12,18 @@
 	public enum Direction
 	{
 		NORTH,
+        NORTHEAST,
 		EAST,
+        SOUTHEAST,
 		SOUTH,
-		WEST
+        SOUTHWEST,
+		WEST,
+        NORTHWEST
 	}
 
     
 	public enum PlayerTurn
 	{
-		PLAYER1,
-		PLAYER2
+		BLACK_PLAYER1,
+		WHITE_PLAYER2
 	}
