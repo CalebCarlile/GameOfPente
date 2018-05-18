@@ -154,6 +154,9 @@ public class BoardManager : Singleton<BoardManager>
         return false;
     }
 
+	
+
+	//Specific check functions here:
     public bool WonGame(Node last)
     {
         List<Line> winLines = GetLines(last, 5);
