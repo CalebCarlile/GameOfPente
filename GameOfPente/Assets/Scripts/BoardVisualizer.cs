@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BoardVisualizer : MonoBehaviour 
 {
-	[SerializeField] int dimensions;
-	[SerializeField] float distanceBetween;
+	// [SerializeField] int dimensions;
+	// [SerializeField] float distanceBetween;
 	[SerializeField] Color lineColor;
 	[SerializeField] GameObject empty;
 
@@ -13,32 +13,8 @@ public class BoardVisualizer : MonoBehaviour
 	
 	
 	// Use this for initialization
-	void Start () 
+	public void Initialize (int dimensions, float distanceBetween) 
 	{
-		// for(int x = 0; x < dimensions; ++x)
-		// {			
-			
-		// 	GameObject go = Instantiate(empty, gameObject.transform);
-		// 	LineRenderer lr = go.AddComponent<LineRenderer>() as LineRenderer;
-		// 	lr.positionCount = 2;
-		// 	lr.SetPosition(0, new Vector3(0, x * distanceBetween, 0.0f));
-		// 	lr.SetPosition(1, new Vector3((dimensions * distanceBetween) - distanceBetween, x * distanceBetween, 0.0f));
-		// 	lr.startWidth = 0.09f;
-		// 	lr.endWidth = 0.09f;
-		// 	boardLines.Add(lr);			
-		// }
-
-		// for(int y = 0; y < dimensions; ++y)
-		// {			
-		// 	GameObject go = Instantiate(empty, gameObject.transform);
-		// 	LineRenderer lr = go.AddComponent<LineRenderer>() as LineRenderer;
-		// 	lr.positionCount = 2;
-		// 	lr.SetPosition(0, new Vector3(y * distanceBetween, 0, 0.0f));
-		// 	lr.SetPosition(1, new Vector3(y * distanceBetween, (dimensions * distanceBetween) - distanceBetween, 0.0f));
-		// 	lr.startWidth = 0.09f;
-		// 	lr.endWidth = 0.09f;
-		// 	boardLines.Add(lr);			
-		// }
 
 		for(int x = 0; x < dimensions; ++x)
 		{			

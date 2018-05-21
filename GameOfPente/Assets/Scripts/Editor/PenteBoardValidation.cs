@@ -92,6 +92,10 @@ public class PenteBoardValidation {
 
     [Test]
     public void TestFalseCapture()
+<<<<<<< HEAD
+    {
+        
+=======
     {
         BoardManager bm = new BoardManager();
         bm.Initialize(19);
@@ -136,9 +140,9 @@ public class PenteBoardValidation {
 
         bm.Nodes[3, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
-        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<Node>());
+        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<Node>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<Node>().Color == eColor.WHITE);
     }
 
     // Test tria finder
@@ -248,3 +252,7 @@ public class PenteBoardValidation {
 
 
 }
+
+        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);

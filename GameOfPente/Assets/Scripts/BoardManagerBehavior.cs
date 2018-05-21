@@ -6,16 +6,36 @@ public class BoardManagerBehavior : MonoBehaviour
 {
 	public GameObject NodeTemplate = null;
 	public GameObject[,] Nodes;
+
+    [SerializeField] Camera m_camera = null;
     public int boardSize = 19;
+
+
+    private float distanceBetween = 1.0f;
+
+    void Start()
+    {
+        Initialize(boardSize);
+    }
 
 	public void Initialize(int size)
 	{
+        //distanceBetween = ((0.00178571f  * Mathf.Pow(boardSize, 2)) - (0.135714f * boardSize) + 3.07679f);
+        float camSize = ((float)boardSize - 9) / 30;
+        m_camera.orthographicSize = Mathf.Lerp(5, 20, camSize);
+        GetComponent<BoardVisualizer>().Initialize(boardSize, distanceBetween);
 		CreateNodes(size);
+        boardSize = size;
 	}
 
 	private void CreateNodes(int size)
 	{
+        //float nodeSize = ((float)boardSize - 9) / 30;
+        //nodeSize = Mathf.Lerp(0.75f, 0.15f, nodeSize);
         Nodes = new GameObject[boardSize, boardSize];
+        float curx, cury;
+        curx = 0 - (boardSize / 2 * distanceBetween);
+        cury = 0 + (boardSize / 2 * distanceBetween);
         for (int x = 0; x < boardSize; x++)
         {
             for (int y = 0; y < boardSize; y++)
@@ -26,8 +46,11 @@ public class BoardManagerBehavior : MonoBehaviour
                 n.x = x;
                 n.y = y;
                 Nodes[x, y] = node;
-                // Set node position
+                node.transform.position = new Vector3(curx, cury, 0.0f);
+                cury -= distanceBetween;
             }
+            curx += distanceBetween;
+            cury = 0 + (boardSize / 2 * distanceBetween);
         }
 	}
 
