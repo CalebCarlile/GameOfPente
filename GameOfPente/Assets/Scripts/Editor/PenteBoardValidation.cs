@@ -16,72 +16,72 @@ public class PenteBoardValidation {
     }
 
     // Test captures, single, multiple, both players, false capture where player boxes themselves in
-    // List<List<Node>>
+    // List<List<NodeBehavior>>
     [Test]
     public void TestSingleCaptureVariations()
     {
         // Vertical, horizontal, diagonal
-        BoardManager bm = new BoardManager();
+        BoardManagerBehavior bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        NodeBehavior node1 = bm.Nodes[0, 1].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        NodeBehavior node1 = bm.NodeBehaviors[0, 1].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        NodeBehavior node2 = bm.Nodes[0, 2].GetComponent<NodeBehavior>();
+        NodeBehavior node2 = bm.NodeBehaviors[0, 2].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[0, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[0, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        List<NodeBehavior> nodes = bm.FindCaptures(bm.Nodes[0, 3].GetComponent<NodeBehavior>());
+        List<NodeBehavior> nodes = bm.FindCaptures(bm.NodeBehaviors[0, 3].GetComponent<NodeBehavior>());
 
 
         Assert.AreSame(nodes[0], node2);
         Assert.AreSame(nodes[1], node1);
-        bm.CheckBoard(bm.Nodes[0, 3].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[0, 1].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
-        Assert.IsTrue(bm.Nodes[0, 2].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        bm.CheckBoard(bm.NodeBehaviors[0, 3].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[0, 1].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.NodeBehaviors[0, 2].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
 
 
 
-        bm = new BoardManager();
+        bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        node1 = bm.Nodes[1, 1].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        node1 = bm.NodeBehaviors[1, 1].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        node2 = bm.Nodes[2, 2].GetComponent<NodeBehavior>();
+        node2 = bm.NodeBehaviors[2, 2].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[3, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[3, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        nodes = bm.FindCaptures(bm.Nodes[3, 3].GetComponent<NodeBehavior>());
+        nodes = bm.FindCaptures(bm.NodeBehaviors[3, 3].GetComponent<NodeBehavior>());
 
 
         Assert.AreSame(nodes[0], node2);
         Assert.AreSame(nodes[1], node1);
-        bm.CheckBoard(bm.Nodes[3, 3].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[1, 1].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
-        Assert.IsTrue(bm.Nodes[2, 2].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        bm.CheckBoard(bm.NodeBehaviors[3, 3].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[1, 1].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.NodeBehaviors[2, 2].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
 
-        bm = new BoardManager();
+        bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        node1 = bm.Nodes[1, 0].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        node1 = bm.NodeBehaviors[1, 0].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        node2 = bm.Nodes[2, 0].GetComponent<NodeBehavior>();
+        node2 = bm.NodeBehaviors[2, 0].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[3, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[3, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        nodes = bm.FindCaptures(bm.Nodes[3, 0].GetComponent<NodeBehavior>());
+        nodes = bm.FindCaptures(bm.NodeBehaviors[3, 0].GetComponent<NodeBehavior>());
 
 
         Assert.AreSame(nodes[0], node2);
         Assert.AreSame(nodes[1], node1);
-        bm.CheckBoard(bm.Nodes[3, 0].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
-        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        bm.CheckBoard(bm.NodeBehaviors[3, 0].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[1, 0].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
+        Assert.IsTrue(bm.NodeBehaviors[2, 0].GetComponent<NodeBehavior>().Color == eColor.EMPTY);
     }
 
     [Test]
@@ -92,57 +92,53 @@ public class PenteBoardValidation {
 
     [Test]
     public void TestFalseCapture()
-<<<<<<< HEAD
     {
-        
-=======
-    {
-        BoardManager bm = new BoardManager();
+        BoardManagerBehavior bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        NodeBehavior node1 = bm.Nodes[0, 1].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        NodeBehavior node1 = bm.NodeBehaviors[0, 1].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        NodeBehavior node2 = bm.Nodes[0, 2].GetComponent<NodeBehavior>();
+        NodeBehavior node2 = bm.NodeBehaviors[0, 2].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[0, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[0, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        bm.CheckBoard(bm.Nodes[0, 2].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[0, 1].GetComponent<NodeBehavior>().Color == eColor.WHITE);
-        Assert.IsTrue(bm.Nodes[0, 2].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        bm.CheckBoard(bm.NodeBehaviors[0, 2].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[0, 1].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.NodeBehaviors[0, 2].GetComponent<NodeBehavior>().Color == eColor.WHITE);
 
 
 
-        bm = new BoardManager();
+        bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        node1 = bm.Nodes[1, 1].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        node1 = bm.NodeBehaviors[1, 1].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        node2 = bm.Nodes[2, 2].GetComponent<NodeBehavior>();
+        node2 = bm.NodeBehaviors[2, 2].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[3, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[3, 3].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        bm.CheckBoard(bm.Nodes[2, 2].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[1, 1].GetComponent<NodeBehavior>().Color == eColor.WHITE);
-        Assert.IsTrue(bm.Nodes[2, 2].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        bm.CheckBoard(bm.NodeBehaviors[2, 2].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[1, 1].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.NodeBehaviors[2, 2].GetComponent<NodeBehavior>().Color == eColor.WHITE);
 
-        bm = new BoardManager();
+        bm = new BoardManagerBehavior();
         bm.Initialize(19);
-        bm.Nodes[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
-        node1 = bm.Nodes[1, 0].GetComponent<NodeBehavior>();
+        bm.NodeBehaviors[0, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        node1 = bm.NodeBehaviors[1, 0].GetComponent<NodeBehavior>();
         node1.Color = eColor.WHITE;
 
-        node2 = bm.Nodes[2, 0].GetComponent<NodeBehavior>();
+        node2 = bm.NodeBehaviors[2, 0].GetComponent<NodeBehavior>();
         node2.Color = eColor.WHITE;
 
-        bm.Nodes[3, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
+        bm.NodeBehaviors[3, 0].GetComponent<NodeBehavior>().Color = eColor.BLACK;
 
-        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<Node>());
-        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<Node>().Color == eColor.WHITE);
-        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<Node>().Color == eColor.WHITE);
+        bm.CheckBoard(bm.NodeBehaviors[2, 0].GetComponent<NodeBehavior>());
+        Assert.IsTrue(bm.NodeBehaviors[1, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
+        Assert.IsTrue(bm.NodeBehaviors[2, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
     }
 
     // Test tria finder
@@ -203,15 +199,15 @@ public class PenteBoardValidation {
     public void TestBlackFirstMove()
     {
         GameObject go = new GameObject();
-        BoardManager bm = go.AddComponent<BoardManager>();
-        bm.NodeTemplate = GameObject.Instantiate(Resources.Load("Prefabs/Node")) as GameObject;
+        BoardManagerBehavior bm = go.AddComponent<BoardManagerBehavior>();
+        bm.NodeBehaviorTemplate = GameObject.Instantiate(Resources.Load("Prefabs/NodeBehavior")) as GameObject;
         bm.Initialize(19);
         int center = 19 / 2;
-        NodeBehavior n = bm.GetNode(center, center);
+        NodeBehavior n = bm.GetNodeBehavior(center, center);
 
-        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNode(center, center), eColor.BLACK));
+        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNodeBehavior(center, center), eColor.BLACK));
 
-        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNode(1, 1), eColor.BLACK));
+        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNodeBehavior(1, 1), eColor.BLACK));
 
 
     }
@@ -219,40 +215,36 @@ public class PenteBoardValidation {
     [Test]
     public void TestBlackSecondMove()
     {
-        BoardManager bm = new BoardManager();
+        BoardManagerBehavior bm = new BoardManagerBehavior();
         bm.Initialize(19);
         int center = 19 / 2;
 
-        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.GetNode(center +1, center-1), eColor.BLACK));
+        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.GetNodeBehavior(center +1, center-1), eColor.BLACK));
 
-        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.GetNode(0, 0), eColor.BLACK));
+        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.GetNodeBehavior(0, 0), eColor.BLACK));
     }
 
     [Test]
     public void TestPiecePlacedOnPiece()
     {
-        BoardManager bm = new BoardManager();
+        BoardManagerBehavior bm = new BoardManagerBehavior();
         bm.Initialize(19);
         int center = 19 / 2;
 
-        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNode(center, center), eColor.BLACK));
+        Assert.IsTrue(bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.GetNodeBehavior(center, center), eColor.BLACK));
 
-        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.WHITE_PLAYER2, 1, bm.GetNode(center, center), eColor.WHITE));
+        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.WHITE_PLAYER2, 1, bm.GetNodeBehavior(center, center), eColor.WHITE));
     }
 
     [Test]
     public void TestBlackMovesFirst()
     {
-        BoardManager bm = new BoardManager();
+        BoardManagerBehavior bm = new BoardManagerBehavior();
         bm.Initialize(19);
 
 
-        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.WHITE_PLAYER2, 0, bm.GetNode(0, 0), eColor.WHITE));
+        Assert.IsFalse(bm.IsValidPlacement(PlayerTurn.WHITE_PLAYER2, 0, bm.GetNodeBehavior(0, 0), eColor.WHITE));
     }
 
 
 }
-
-        bm.CheckBoard(bm.Nodes[2, 0].GetComponent<NodeBehavior>());
-        Assert.IsTrue(bm.Nodes[1, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);
-        Assert.IsTrue(bm.Nodes[2, 0].GetComponent<NodeBehavior>().Color == eColor.WHITE);

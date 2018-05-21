@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManagerBehavior : MonoBehaviour
+public class BoardManagerBehavior: MonoBehaviour
 {
-	public GameObject NodeTemplate = null;
-	public GameObject[,] Nodes;
+	public GameObject NodeBehaviorTemplate = null;
+	public GameObject[,] NodeBehaviors;
 
     [SerializeField] Camera m_camera = null;
     public int boardSize = 19;
@@ -24,15 +24,15 @@ public class BoardManagerBehavior : MonoBehaviour
         float camSize = ((float)boardSize - 9) / 30;
         m_camera.orthographicSize = Mathf.Lerp(5, 20, camSize);
         GetComponent<BoardVisualizer>().Initialize(boardSize, distanceBetween);
-		CreateNodes(size);
+		CreateNodeBehaviors(size);
         boardSize = size;
 	}
 
-	private void CreateNodes(int size)
+	private void CreateNodeBehaviors(int size)
 	{
         //float nodeSize = ((float)boardSize - 9) / 30;
         //nodeSize = Mathf.Lerp(0.75f, 0.15f, nodeSize);
-        Nodes = new GameObject[boardSize, boardSize];
+        NodeBehaviors = new GameObject[boardSize, boardSize];
         float curx, cury;
         curx = 0 - (boardSize / 2 * distanceBetween);
         cury = 0 + (boardSize / 2 * distanceBetween);
@@ -40,12 +40,12 @@ public class BoardManagerBehavior : MonoBehaviour
         {
             for (int y = 0; y < boardSize; y++)
             {
-                GameObject node = Instantiate(NodeTemplate);
+                GameObject node = Instantiate(NodeBehaviorTemplate);
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
                 n.boardManager = this;
                 n.x = x;
                 n.y = y;
-                Nodes[x, y] = node;
+                NodeBehaviors[x, y] = node;
                 node.transform.position = new Vector3(curx, cury, 0.0f);
                 cury -= distanceBetween;
             }
@@ -54,10 +54,10 @@ public class BoardManagerBehavior : MonoBehaviour
         }
 	}
 
-    public NodeBehavior GetNode(int x, int y)
+    public NodeBehavior GetNodeBehavior(int x, int y)
     {
         if (x < 0 || y < 0 || x >= boardSize || y >= boardSize) return null;
-        return Nodes[x, y].GetComponent<NodeBehavior>();
+        return NodeBehaviors[x, y].GetComponent<NodeBehavior>();
     }
 
     public bool IsValidPlacement(PlayerTurn player, int turn, NodeBehavior node, eColor color)
@@ -152,13 +152,13 @@ public class BoardManagerBehavior : MonoBehaviour
             // Check if it can be expanded into a tria!
             for (int i = 0; i < size; i++)
             {
-                NodeBehavior node = line.nodes[0].GetNode(line.opposite);
+                NodeBehavior node = line.nodes[0].GetNodeBehavior(line.opposite);
                 if (node == null) break;
                 line.nodes.Insert(0, node);
             }
             for (int i = 0; i < size; i++)
             {
-                NodeBehavior node = line.nodes[line.nodes.Count - 1].GetNode(line.direction);
+                NodeBehavior node = line.nodes[line.nodes.Count - 1].GetNodeBehavior(line.direction);
                 if (node == null) break;
                 line.nodes.Add(node);
             }
@@ -169,12 +169,12 @@ public class BoardManagerBehavior : MonoBehaviour
     private bool IsUnblocked(Line line)
     {
         int sidesBlocked = 0;
-        NodeBehavior previous = line.nodes[0].GetNode(line.opposite);
+        NodeBehavior previous = line.nodes[0].GetNodeBehavior(line.opposite);
         if (previous == null || previous.Color != eColor.EMPTY)
         {
             sidesBlocked++;
         }
-        NodeBehavior next = line.nodes[line.nodes.Count - 1].GetNode(line.direction);
+        NodeBehavior next = line.nodes[line.nodes.Count - 1].GetNodeBehavior(line.direction);
         if (next == null || next.Color != eColor.EMPTY)
         {
             sidesBlocked++;
