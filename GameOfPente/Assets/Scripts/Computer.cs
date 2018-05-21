@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour 
 {
-	public static Node MakeMove()
+	public static NodeBehavior MakeMove()
 	{
 		return null;
 	}
