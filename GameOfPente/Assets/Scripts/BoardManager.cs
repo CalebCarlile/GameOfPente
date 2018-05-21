@@ -39,6 +39,28 @@ public class BoardManager : Singleton<BoardManager>
 
     public bool IsValidPlacement(PlayerTurn player, int turn, Node node, eColor color)
     {
+        if (node.Color != eColor.EMPTY)
+        {
+            return false;
+        }
+        // Tournament Rule
+        if (turn == 0)
+        {
+            int boardCenter = boardSize / 2;
+            if (player == PlayerTurn.BLACK_PLAYER1)
+            {
+                if (node.x != boardCenter || node.y != boardCenter)
+                {
+                    return false;
+                }
+            } else
+            {
+                if (Mathf.Abs(node.x  - boardCenter) < 3 || Mathf.Abs(node.y - boardCenter) < 3)
+                {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -72,6 +94,26 @@ public class BoardManager : Singleton<BoardManager>
     public List<Node> FindCaptures(Node last)
     {
         List<Node> captures = new List<Node>();
+        eColor other = (last.Color == eColor.BLACK) ? eColor.WHITE : eColor.BLACK;
+        List<eColor> capture = new List<eColor>() { last.Color, other, other, last.Color };
+        List<Line> captureLines = GetLines(last, 3);
+        foreach (Line line in captureLines)
+        {
+            for (int i = 0; i < line.nodes.Count - 4; i++)
+            {
+                List<Node> nodeLine = line.nodes.GetRange(i, 4);
+                List<eColor> colors = new List<eColor>();
+                foreach (Node node in nodeLine)
+                {
+                    colors.Add(node.Color);
+                }
+                if (capture == colors)
+                {
+                    captures.Add(nodeLine[1]);
+                    captures.Add(nodeLine[2]);
+                }
+            }
+        }
         return captures;
     }
 

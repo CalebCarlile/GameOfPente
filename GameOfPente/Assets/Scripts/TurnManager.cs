@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Player
+{
+    public string name;
+    public int captureCount;
+}
+
 public class TurnManager : Singleton<TurnManager> 
 {
 
-	public string player1Name;
-	public string player2Name;
+    public Player p1;
+    public Player p2;
 	public PlayerTurn playerTurn = PlayerTurn.BLACK_PLAYER1;
 
 	public void NextTurn()
