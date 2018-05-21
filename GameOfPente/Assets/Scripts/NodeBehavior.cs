@@ -5,10 +5,8 @@ using UnityEngine;
 public class NodeBehavior : MonoBehaviour
 {
 
-    public BoardManagerBehavior boardManager;
 	public SpriteRenderer spriteRenderer = null;
-    public int x;
-    public int y;
+    public Node node;
 
 	void Start()
 	{
@@ -41,30 +39,6 @@ public class NodeBehavior : MonoBehaviour
 				spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 			break;
 		}
-	}
-
-	public NodeBehavior GetNodeBehavior(Direction dir)
-	{
-        switch (dir)
-        {
-            case Direction.EAST:
-                return boardManager.GetNodeBehavior(x + 1, y);
-            case Direction.NORTH:
-                return boardManager.GetNodeBehavior(x, y - 1);
-            case Direction.NORTHEAST:
-                return boardManager.GetNodeBehavior(x + 1, y - 1);
-            case Direction.NORTHWEST:
-                return boardManager.GetNodeBehavior(x - 1, y - 1);
-            case Direction.SOUTH:
-                return boardManager.GetNodeBehavior(x, y + 1);
-            case Direction.SOUTHEAST:
-                return boardManager.GetNodeBehavior(x + 1, y + 1);
-            case Direction.SOUTHWEST:
-                return boardManager.GetNodeBehavior(x - 1, y + 1);
-            case Direction.WEST:
-                return boardManager.GetNodeBehavior(x - 1, y);
-        }
-        return null;
 	}
 
 	private void OnMouseEnter()
