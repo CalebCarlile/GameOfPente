@@ -29,7 +29,7 @@ public class PenteBoardValidation {
     [Test]
     public void TestFalseCapture()
     {
-
+        
     }
 
     // Test tria finder
