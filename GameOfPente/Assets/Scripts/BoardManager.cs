@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class BoardManager {
 
@@ -237,12 +238,34 @@ public class BoardManager {
 
     public void SaveNodesToFile(string path)
     {
-
+        using (StreamWriter saveWrite = new StreamWriter(path))
+        {
+            saveWrite.WriteLine(boardSize);
+            for (int x = 0; x < boardSize; x++)
+            {
+                for (int y = 0; y < boardSize; y++)
+                {
+                    saveWrite.Write((int)nodes[x, y].color);
+                }
+                saveWrite.Write("\n");
+            }
+        }
     }
 
     public void LoadNodesFromFile(string path)
     {
-
+        using (StreamReader loadRead = new StreamReader(path))
+        {
+            boardSize = int.Parse(loadRead.ReadLine());
+            for (int x = 0; x < boardSize; x++)
+            {
+                string line = loadRead.ReadLine();
+                for (int y = 0; y < boardSize; y++)
+                {
+                    nodes[x, y].color = (eColor)int.Parse(line[y].ToString());
+                }
+            }
+        }
     }
 
 }

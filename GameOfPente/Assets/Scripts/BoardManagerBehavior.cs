@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class BoardManagerBehavior: MonoBehaviour
 {
@@ -71,6 +72,18 @@ public class BoardManagerBehavior: MonoBehaviour
         {
             print("TRIA!");
         }
+    }
+
+    public void Save()
+    {
+        string savePath = EditorUtility.SaveFilePanel("Save Game", "", "Game", "pente");
+        boardManager.SaveNodesToFile(savePath);
+    }
+
+    public void Load()
+    {
+        string loadPath = EditorUtility.OpenFilePanel("Load Game", "", "pente");
+        boardManager.LoadNodesFromFile(loadPath);
     }
 
 }
