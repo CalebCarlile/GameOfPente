@@ -44,6 +44,11 @@ public class BoardManagerBehavior: MonoBehaviour
             {
                 GameObject node = Instantiate(NodeBehaviorTemplate);
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
+                Node n2 = new Node();
+                n2.x = x;
+                n2.y = y;
+                n2.color = eColor.EMPTY;
+                n.node = n2;
                 NodeBehaviors[x, y] = node;
                 node.transform.position = new Vector3(curx, cury, 0.0f);
                 cury -= distanceBetween;
@@ -52,6 +57,8 @@ public class BoardManagerBehavior: MonoBehaviour
             cury = 0 + (boardSize / 2 * distanceBetween);
         }
 	}
+
+
 
     public void CheckBoard(NodeBehavior last)
     {
@@ -70,6 +77,14 @@ public class BoardManagerBehavior: MonoBehaviour
         else if (boardManager.TriaCreated(last.node))
         {
             print("TRIA!");
+        }
+
+        for(int i = 0; i < boardSize; ++i)
+        {
+            for(int j = 0; j < boardSize; ++j)
+            {
+                NodeBehaviors[i, j].GetComponent<NodeBehavior>().UpdateNode();
+            }
         }
     }
 

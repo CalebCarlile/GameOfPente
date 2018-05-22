@@ -6,7 +6,7 @@ public class NodeBehavior : MonoBehaviour
 {
 
 	public SpriteRenderer spriteRenderer = null;
-    public Node node;
+    [SerializeField] public Node node;
 
 	void Start()
 	{
@@ -40,6 +40,15 @@ public class NodeBehavior : MonoBehaviour
 			break;
 		}
 	}
+
+    public void UpdateNode()
+    {
+        if(node.color != color)
+        {
+            SetSpriteColor(node.color);
+            color = node.color;
+        }
+    }
 
 	private void OnMouseEnter()
 	{
@@ -80,6 +89,8 @@ public class NodeBehavior : MonoBehaviour
 					break;
 			}
 			Color = curPlayerColor;
+            node.color = curPlayerColor;
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<BoardManagerBehavior>().CheckBoard(this);
 			TurnManager.Instance.NextTurn();
 		}	
 	}
