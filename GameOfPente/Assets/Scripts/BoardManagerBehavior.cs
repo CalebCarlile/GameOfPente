@@ -45,8 +45,10 @@ public class BoardManagerBehavior: MonoBehaviour
             {
                 GameObject node = Instantiate(NodeBehaviorTemplate);
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
-
                 n.node = boardManager.nodes[x, y];
+                n.node.x = x;
+                n.node.y = y;
+
                 if(boardManager.nodes[x,y] == null)
                 {
                     print("Not initialized");
