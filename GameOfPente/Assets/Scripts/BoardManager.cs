@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public class BoardManager {
 
@@ -104,7 +105,7 @@ public class BoardManager {
                 {
                     colors.Add(node.color);
                 }
-                if (capture == colors)
+                if (capture.SequenceEqual(colors))
                 {
                     captures.Add(nodeLine[1]);
                     captures.Add(nodeLine[2]);
@@ -176,11 +177,14 @@ public class BoardManager {
                     {
                         colors.Add(node.color);
                     }
-                    if (trias.Contains(colors))
+                    foreach (var triaOption in trias)
                     {
-                        if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                        if (triaOption.SequenceEqual(colors))
                         {
-                            return true;
+                            if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -203,7 +207,7 @@ public class BoardManager {
                 {
                     colors.Add(node.color);
                 }
-                if (tessera == colors)
+                if (tessera.SequenceEqual(colors))
                 {
                     if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
                     {
@@ -229,7 +233,7 @@ public class BoardManager {
                 {
                     colors.Add(node.color);
                 }
-                if (win == colors)
+                if (win.SequenceEqual(colors))
                 {
                     return true;
                 }
