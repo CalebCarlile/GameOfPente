@@ -17,6 +17,8 @@ public class BoardManager {
             for (int y = 0; y < size; y++)
             {
                 nodes[x, y] = new Node();
+                nodes[x, y].x = x;
+                nodes[x, y].y = y;
             }
         }
     }

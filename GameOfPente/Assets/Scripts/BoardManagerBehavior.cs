@@ -36,6 +36,7 @@ public class BoardManagerBehavior: MonoBehaviour
         //float nodeSize = ((float)boardSize - 9) / 30;
         //nodeSize = Mathf.Lerp(0.75f, 0.15f, nodeSize);
         NodeBehaviors = new GameObject[boardSize, boardSize];
+        boardManager.Init(boardSize);
         float curx, cury;
         curx = 0 - (boardSize / 2 * distanceBetween);
         cury = 0 + (boardSize / 2 * distanceBetween);
@@ -45,7 +46,19 @@ public class BoardManagerBehavior: MonoBehaviour
             {
                 GameObject node = Instantiate(NodeBehaviorTemplate);
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
+                n.node = boardManager.nodes[x, y];
+                n.node.x = x;
+                n.node.y = y;
+
+                if(boardManager.nodes[x,y] == null)
+                {
+                    print("Not initialized");
+                }
+                n.node.color = eColor.EMPTY;
                 NodeBehaviors[x, y] = node;
+
+                boardManager.nodes[x, y] = n.node;
+
                 node.transform.position = new Vector3(curx, cury, 0.0f);
                 cury -= distanceBetween;
             }
@@ -53,6 +66,8 @@ public class BoardManagerBehavior: MonoBehaviour
             cury = 0 + (boardSize / 2 * distanceBetween);
         }
 	}
+
+
 
     public void CheckBoard(NodeBehavior last)
     {
@@ -71,6 +86,14 @@ public class BoardManagerBehavior: MonoBehaviour
         else if (boardManager.TriaCreated(last.node))
         {
             print("TRIA!");
+        }
+
+        for(int i = 0; i < boardSize; ++i)
+        {
+            for(int j = 0; j < boardSize; ++j)
+            {
+                NodeBehaviors[i, j].GetComponent<NodeBehavior>().UpdateNode();
+            }
         }
     }
 
