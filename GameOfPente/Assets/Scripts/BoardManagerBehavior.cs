@@ -17,10 +17,10 @@ public class BoardManagerBehavior: MonoBehaviour
     void Start()
     {
         boardManager = new BoardManager();
-        Initialize(boardSize);
+        Init(boardSize);
     }
 
-	public void Initialize(int size)
+	public void Init(int size)
 	{
         //distanceBetween = ((0.00178571f  * Mathf.Pow(boardSize, 2)) - (0.135714f * boardSize) + 3.07679f);
         float camSize = ((float)boardSize - 9) / 30;

@@ -7,6 +7,19 @@ public class BoardManager {
     public int boardSize;
     public Node[,] nodes;
 
+    public void Init(int size)
+    {
+        boardSize = size;
+        nodes = new Node[size, size];
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                nodes[x, y] = new Node();
+            }
+        }
+    }
+
     public Node GetNode(Node n, Direction dir)
     {
         switch (dir)

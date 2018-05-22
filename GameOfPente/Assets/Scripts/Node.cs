@@ -6,6 +6,6 @@ public class Node {
 
     public int x;
     public int y;
-    public eColor color;
+    public eColor color = eColor.EMPTY;
 
 }
