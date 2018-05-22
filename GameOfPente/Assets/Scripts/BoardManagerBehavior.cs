@@ -75,10 +75,9 @@ public class BoardManagerBehavior: MonoBehaviour
         {
             print(last.Color + " WON!");
         }
-        if (boardManager.FindCaptures(last.node).Count > 0)
+        foreach (Node capture in boardManager.FindCaptures(last.node))
         {
-            print("CAPTURE");
-            // TODO : Set to empty
+            capture.color = eColor.EMPTY;
         }
         if (boardManager.TesseraCreated(last.node))
         {
