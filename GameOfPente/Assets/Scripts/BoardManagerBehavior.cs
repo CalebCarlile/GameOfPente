@@ -35,6 +35,7 @@ public class BoardManagerBehavior: MonoBehaviour
         //float nodeSize = ((float)boardSize - 9) / 30;
         //nodeSize = Mathf.Lerp(0.75f, 0.15f, nodeSize);
         NodeBehaviors = new GameObject[boardSize, boardSize];
+        boardManager.Init(boardSize);
         float curx, cury;
         curx = 0 - (boardSize / 2 * distanceBetween);
         cury = 0 + (boardSize / 2 * distanceBetween);
@@ -44,12 +45,17 @@ public class BoardManagerBehavior: MonoBehaviour
             {
                 GameObject node = Instantiate(NodeBehaviorTemplate);
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
-                Node n2 = new Node();
-                n2.x = x;
-                n2.y = y;
-                n2.color = eColor.EMPTY;
-                n.node = n2;
+
+                n.node = boardManager.nodes[x, y];
+                if(boardManager.nodes[x,y] == null)
+                {
+                    print("Not initialized");
+                }
+                n.node.color = eColor.EMPTY;
                 NodeBehaviors[x, y] = node;
+
+                boardManager.nodes[x, y] = n.node;
+
                 node.transform.position = new Vector3(curx, cury, 0.0f);
                 cury -= distanceBetween;
             }
