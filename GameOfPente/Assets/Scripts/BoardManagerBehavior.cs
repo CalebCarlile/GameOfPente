@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BoardManagerBehavior: MonoBehaviour
 {
 	public GameObject NodeBehaviorTemplate = null;
 	public GameObject[,] NodeBehaviors;
     public BoardManager boardManager;
+    public Notification eyeCandy;
+    public Color triaColor;
+    public Color tesseraColor;
+    public Color winColor;
+    public Color captureColor;
 
     [SerializeField] Camera m_camera = null;
     public int boardSize = 19;
@@ -75,6 +82,7 @@ public class BoardManagerBehavior: MonoBehaviour
         if (boardManager.WonGame(last.node))
         {
             print(last.Color + " WON!");
+            SceneManager.LoadScene("UIProto");
         }
         foreach (Node capture in boardManager.FindCaptures(last.node))
         {
@@ -83,10 +91,13 @@ public class BoardManagerBehavior: MonoBehaviour
         if (boardManager.TesseraCreated(last.node))
         {
             print("TESSERA!");
+            eyeCandy.Notify(last.transform.position, "Tessera!", 40, 2, Vector2.up * 3, tesseraColor);
+
         }
         else if (boardManager.TriaCreated(last.node))
         {
             print("TRIA!");
+            eyeCandy.Notify(last.transform.position, "Tria!", 30, 1, Vector2.up * 2, triaColor);
         }
 
         for(int i = 0; i < boardSize; ++i)

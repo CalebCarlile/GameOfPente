@@ -92,7 +92,7 @@ public class NodeBehavior : MonoBehaviour
             node.color = curPlayerColor;
             GameObject.FindGameObjectWithTag("GameController").GetComponent<BoardManagerBehavior>().CheckBoard(this);
 			TurnManager.Instance.NextTurn();
-		}	
-	}
+        }
+    }
 
 }
