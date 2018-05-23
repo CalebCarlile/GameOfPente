@@ -27,3 +27,9 @@
 		BLACK_PLAYER1,
 		WHITE_PLAYER2
 	}
+
+	public enum PlayerType
+	{
+		HUMAN,
+		COMPUTER
+	}

@@ -5,14 +5,29 @@ using UnityEngine;
 public class Player
 {
     public string name;
+
+	public PlayerType playerType;
     public int captureCount;
 }
 
 public class TurnManager : Singleton<TurnManager> 
 {
 
-    public Player p1;
-    public Player p2;
+	void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        if (ms_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            ms_instance = this;
+        }
+    }
+
+    public Player p1 = new Player();
+    public Player p2 = new Player();
 	public PlayerTurn playerTurn = PlayerTurn.BLACK_PLAYER1;
 
 	public void NextTurn()

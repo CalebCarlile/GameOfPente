@@ -17,6 +17,7 @@ public class BoardManagerBehavior: MonoBehaviour
 
     void Start()
     {
+        boardSize = MenuUtility.boardSize;
         boardManager = new BoardManager();
         Init(boardSize);
     }

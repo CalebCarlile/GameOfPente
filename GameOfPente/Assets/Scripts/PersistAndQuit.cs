@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PersistAndQuit : MonoBehaviour 
 {
+
+	public int boardSize = 9;
+
 	void Awake()
 	{
 		DontDestroyOnLoad(this.gameObject);
