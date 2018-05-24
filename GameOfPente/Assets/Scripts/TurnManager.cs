@@ -9,7 +9,7 @@ public class Player
     public int captureCount;
 }
 
-public class TurnManager
+public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance = new TurnManager();
     public Player p1 = new Player();
@@ -26,6 +26,10 @@ public class TurnManager
 			case PlayerTurn.WHITE_PLAYER2:
 				playerTurn = PlayerTurn.BLACK_PLAYER1;
 				break;
+		}
+		if(playerTurn == PlayerTurn.WHITE_PLAYER2 && p2.playerType == PlayerType.COMPUTER)
+		{
+			Computer.MakeMove();
 		}
 	}
 }

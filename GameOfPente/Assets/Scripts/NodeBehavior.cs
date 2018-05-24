@@ -64,6 +64,7 @@ public class NodeBehavior : MonoBehaviour
 					curPlayerColor = eColor.B_HOVER;
 					break;
 				case PlayerTurn.WHITE_PLAYER2:
+					if(TurnManager.Instance.p2.playerType != PlayerType.COMPUTER)
 					curPlayerColor = eColor.W_HOVER;
 					break;
 			}
@@ -74,7 +75,12 @@ public class NodeBehavior : MonoBehaviour
 	private void OnMouseExit() 
 	{
 		if(Color == eColor.W_HOVER || Color == eColor.B_HOVER)
-			Color = eColor.EMPTY;
+		{
+			if(turnManager.playerTurn != PlayerTurn.WHITE_PLAYER2 || turnManager.p2.playerType != PlayerType.COMPUTER)
+			{
+				Color = eColor.EMPTY;
+			}
+		}
 	}
 
 	void OnMouseDown() 
@@ -97,5 +103,12 @@ public class NodeBehavior : MonoBehaviour
 			turnManager.NextTurn();
         }
     }
+
+	public void Place(eColor color)
+	{
+		Color = color;
+		node.color = color;
+		GameObject.FindGameObjectWithTag("GameController").GetComponent<BoardManagerBehavior>().CheckBoard(this);
+	}
 
 }
