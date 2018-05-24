@@ -10,8 +10,11 @@ public class NodeBehavior : MonoBehaviour
 
 	private TurnManager turnManager;
 
+	private BoardManager boardManager;
+
 	void Start()
 	{
+		boardManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<BoardManagerBehavior>().boardManager;
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		Color = eColor.EMPTY;
 		turnManager = TurnManager.Instance;
@@ -55,9 +58,19 @@ public class NodeBehavior : MonoBehaviour
 
 	private void OnMouseEnter()
 	{
-		if (Color == eColor.EMPTY)
+		eColor curPlayerColor = eColor.EMPTY;
+		switch(turnManager.playerTurn)
 		{
-			eColor curPlayerColor = eColor.EMPTY;
+			case PlayerTurn.BLACK_PLAYER1:
+				curPlayerColor = eColor.BLACK;
+				break;
+			case PlayerTurn.WHITE_PLAYER2:
+				if(TurnManager.Instance.p2.playerType != PlayerType.COMPUTER)
+				curPlayerColor = eColor.WHITE;
+				break;
+		}
+		if (Color == eColor.EMPTY && boardManager.IsValidPlacement(turnManager.playerTurn, turnManager.TurnCount, this.node, curPlayerColor))
+		{
 			switch(turnManager.playerTurn)
 			{
 				case PlayerTurn.BLACK_PLAYER1:

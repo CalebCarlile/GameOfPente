@@ -15,9 +15,11 @@ public class TurnManager : MonoBehaviour
     public Player p1 = new Player();
     public Player p2 = new Player();
 	public PlayerTurn playerTurn = PlayerTurn.BLACK_PLAYER1;
+	public int TurnCount = 0;
 
 	public void NextTurn()
 	{
+		TurnCount++;
 		switch(playerTurn)
 		{
 			case PlayerTurn.BLACK_PLAYER1:
