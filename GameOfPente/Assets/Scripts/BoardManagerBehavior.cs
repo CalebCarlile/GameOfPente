@@ -30,22 +30,25 @@ public class BoardManagerBehavior: MonoBehaviour
         Init(boardSize);
     }
 
-	public void Init(int size)
+	public void Init(int size, bool isLoad = false)
 	{
         //distanceBetween = ((0.00178571f  * Mathf.Pow(boardSize, 2)) - (0.135714f * boardSize) + 3.07679f);
         float camSize = ((float)boardSize - 9) / 30;
         m_camera.orthographicSize = Mathf.Lerp(5, 20, camSize);
         GetComponent<BoardVisualizer>().Initialize(boardSize, distanceBetween);
-		CreateNodeBehaviors(size);
+		CreateNodeBehaviors(size, isLoad);
         boardSize = size;
 	}
 
-	private void CreateNodeBehaviors(int size)
+	private void CreateNodeBehaviors(int size, bool isLoad = false)
 	{
         //float nodeSize = ((float)boardSize - 9) / 30;
         //nodeSize = Mathf.Lerp(0.75f, 0.15f, nodeSize);
-        NodeBehaviors = new GameObject[boardSize, boardSize];
-        boardManager.Init(boardSize);
+        if (!isLoad)
+        {
+            NodeBehaviors = new GameObject[boardSize, boardSize];
+            boardManager.Init(boardSize);
+        }
         float curx, cury;
         curx = 0 - (boardSize / 2 * distanceBetween);
         cury = 0 + (boardSize / 2 * distanceBetween);
@@ -53,21 +56,22 @@ public class BoardManagerBehavior: MonoBehaviour
         {
             for (int y = 0; y < boardSize; y++)
             {
-                GameObject node = Instantiate(NodeBehaviorTemplate);
+                GameObject node = null;
+                if (isLoad)
+                {
+                    node = NodeBehaviors[x, y];
+                } else {
+                    node = Instantiate(NodeBehaviorTemplate);
+                }
                 NodeBehavior n = node.GetComponent<NodeBehavior>();
                 n.node = boardManager.nodes[x, y];
                 n.node.x = x;
                 n.node.y = y;
-
-                if(boardManager.nodes[x,y] == null)
+                if (isLoad)
                 {
-                    print("Not initialized");
+                    n.Color = boardManager.nodes[x, y].color;
                 }
-                n.node.color = eColor.EMPTY;
                 NodeBehaviors[x, y] = node;
-
-                boardManager.nodes[x, y] = n.node;
-
                 node.transform.position = new Vector3(curx, cury, 0.0f);
                 cury -= distanceBetween;
             }
@@ -84,9 +88,16 @@ public class BoardManagerBehavior: MonoBehaviour
         if (boardManager.WonGame(last.node))
         {
             print(last.Color + " WON!");
+            eyeCandy.Notify(last.transform.position, last.Color + " WON!", 60, 1, Vector2.up * 1, winColor);
             SceneManager.LoadScene("UIProto");
+            return;
         }
-        foreach (Node capture in boardManager.FindCaptures(last.node))
+        List<Node> captures = boardManager.FindCaptures(last.node);
+        if (captures.Count > 0)
+        {
+            eyeCandy.Notify(last.transform.position, "Capture!", 30, 1, Vector2.up * 2, captureColor);
+        }
+        foreach (Node capture in captures)
         {
             capture.color = eColor.EMPTY;
             switch(turnManager.playerTurn)
@@ -138,18 +149,25 @@ public class BoardManagerBehavior: MonoBehaviour
     public void Save()
     {
         string savePath = EditorUtility.SaveFilePanel("Save Game", "", "Game", "pente");
-        boardManager.SaveNodesToFile(savePath);
+        if (savePath != "")
+        {
+            boardManager.SaveNodesToFile(savePath);
+        }
     }
 
     public void Load()
     {
         string loadPath = EditorUtility.OpenFilePanel("Load Game", "", "pente");
-        boardManager.LoadNodesFromFile(loadPath);
+        if (loadPath != "")
+        {
+            boardManager.LoadNodesFromFile(loadPath);
+        }
+        Init(boardManager.boardSize, true);
     }
 
-    public void Wait()
+    public void Wait(float time = 0.5f)
 	{
-		StartCoroutine(WaitTime(3.0f));
+		StartCoroutine(WaitTime(time));
 	}
 
 	private IEnumerator WaitTime(float duration)

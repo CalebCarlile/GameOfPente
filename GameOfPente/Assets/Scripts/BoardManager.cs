@@ -90,7 +90,7 @@ public class BoardManager {
         List<Node> captures = new List<Node>();
         eColor other = (last.color == eColor.BLACK) ? eColor.WHITE : eColor.BLACK;
         List<eColor> capture = new List<eColor>() { last.color, other, other, last.color };
-        List<Line> captureLines = GetLines(last, 3);
+        List<Line> captureLines = GetLines(last, 4);
         foreach (Line line in captureLines)
         {
             for (int i = 0; i < line.nodes.Count - 4; i++)
@@ -120,7 +120,6 @@ public class BoardManager {
         lines.Add(new Line() { nodes = new List<Node>() { last }, direction = Direction.SOUTHEAST, opposite = Direction.NORTHWEST });
         foreach (Line line in lines)
         {
-            // Check if it can be expanded into a tria!
             for (int i = 0; i < size; i++)
             {
                 Node node = GetNode(line.nodes[0], line.opposite);
@@ -137,7 +136,7 @@ public class BoardManager {
         return lines;
     }
 
-    private bool IsUnblocked(Line line)
+    private int SidesBlocked(Line line)
     {
         int sidesBlocked = 0;
         Node previous = GetNode(line.nodes[0], line.opposite);
@@ -150,12 +149,12 @@ public class BoardManager {
         {
             sidesBlocked++;
         }
-        return sidesBlocked < 2;
+        return sidesBlocked;
     }
 
     public bool TriaCreated(Node last)
     {
-        List<Line> triaLines = GetLines(last, 3);
+        List<Line> triaLines = GetLines(last, 4);
         List<List<eColor>> trias = new List<List<eColor>>() {
             new List<eColor>() { last.color, last.color, last.color },
             new List<eColor>() { last.color, last.color, eColor.EMPTY, last.color },
@@ -177,7 +176,7 @@ public class BoardManager {
                     {
                         if (triaOption.SequenceEqual(colors))
                         {
-                            if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                            if (SidesBlocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }) == 0)
                             {
                                 return true;
                             }
@@ -205,7 +204,7 @@ public class BoardManager {
                 }
                 if (tessera.SequenceEqual(colors))
                 {
-                    if (IsUnblocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }))
+                    if (SidesBlocked(new Line() { nodes = nodeLine, direction = line.direction, opposite = line.opposite }) < 2)
                     {
                         return true;
                     }
