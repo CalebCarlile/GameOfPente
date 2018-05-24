@@ -141,7 +141,6 @@ public class PenteBoardValidation {
         Assert.IsTrue(bm.nodes[2, 0].color == eColor.WHITE);
     }
 
-    // Test tria finder
     #region Black Tria Tests
     [Test]
     public void TestTriaFinder_Black_Vertical_No_Space_No_Blocks_Position_1()
@@ -3633,7 +3632,6 @@ public class PenteBoardValidation {
     }
     #endregion
 
-    // Test tria finder
     #region White Tria Tests
     [Test]
     public void TestTriaFinder_White_Vertical_No_Space_No_Blocks_Position_1()
@@ -6236,7 +6234,7 @@ public class PenteBoardValidation {
         //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,8]));
     }
-        [Test]
+    [Test]
     public void TestTesseraFinder_White_Horizontal_No_Blocks_Position_1()
     {
         BoardManager bm = new BoardManager();
@@ -7122,6 +7120,2510 @@ public class PenteBoardValidation {
 
         //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,4]));
+    }
+    #endregion
+
+    #region White Won Game Tests
+    [Test]
+    public void TestGameWon_White_Vertical_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_White_Horizontal_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+
+
+
+
+
+
+
+
+        [Test]
+    public void TestGameWon_White_Vertical_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_White_Vertical_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_White_Horizontal_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_White_Horizontal_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_1_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        bm.nodes[10, 10].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_White_Diagonal_2_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        bm.nodes[0, 10].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+    #endregion
+
+    #region Black Won Game Tests
+    [Test]
+    public void TestGameWon_Black_Vertical_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_Black_Horizontal_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_No_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_1_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_One_Block_Position_2_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,6]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,7]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,8]));
+    }
+    [Test]
+    public void TestGameWon_Black_Vertical_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,9]));
+    }
+
+    [Test]
+    public void TestGameWon_Black_Horizontal_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+        bm.nodes[4, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+        bm.nodes[4, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+        bm.nodes[4, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+        bm.nodes[4, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,5]));
+    }
+    [Test]
+    public void TestGameWon_Black_Horizontal_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.WHITE;
+        bm.nodes[4, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+        bm.nodes[4, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+        bm.nodes[4, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[6,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+        bm.nodes[4, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[7,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+        bm.nodes[4, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[8,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_1_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.BLACK;
+        bm.nodes[10, 10].color = eColor.WHITE;
+        bm.nodes[4, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[9,9]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+        bm.nodes[6, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+        bm.nodes[6, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[4,6]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+        bm.nodes[6, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[3,7]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+        bm.nodes[6, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestWonGame_Black_Diagonal_2_Two_Blocks_Position_5()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.BLACK;
+        bm.nodes[0, 10].color = eColor.WHITE;
+        bm.nodes[6, 4].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.WonGame(bm.nodes[1,9]));
     }
     #endregion
 
