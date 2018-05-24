@@ -26,6 +26,7 @@ public class BoardManagerBehavior: MonoBehaviour
     {
         boardSize = MenuUtility.boardSize;
         boardManager = new BoardManager();
+        Computer.LinkBoard(this, boardManager);
         Init(boardSize);
     }
 
@@ -120,5 +121,28 @@ public class BoardManagerBehavior: MonoBehaviour
         string loadPath = EditorUtility.OpenFilePanel("Load Game", "", "pente");
         boardManager.LoadNodesFromFile(loadPath);
     }
+
+    public void Wait()
+	{
+		StartCoroutine(WaitTime(3.0f));
+	}
+
+	private IEnumerator WaitTime(float duration)
+	{
+		float remaining = duration;
+		while(remaining > 0)
+		{
+			remaining -= Time.deltaTime;
+			yield return null;
+		}
+        foreach(GameObject node in NodeBehaviors)
+        {
+            if(node.GetComponent<NodeBehavior>().Color == eColor.W_HOVER)
+            {
+                node.GetComponent<NodeBehavior>().Place(eColor.WHITE);
+            }
+        }
+		TurnManager.Instance.NextTurn();
+	}
 
 }
