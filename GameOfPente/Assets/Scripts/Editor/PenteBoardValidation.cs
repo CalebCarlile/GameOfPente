@@ -142,36 +142,3496 @@ public class PenteBoardValidation {
     }
 
     // Test tria finder
+    #region Tria Tests
     [Test]
-    public void TestTriaFinder()
+    public void TestTriaFinder_Vertical_No_Space_No_Blocks_Position_1()
     {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
 
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Vertical_No_Space_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
     }
 
     [Test]
-    public void TestBlockedTriaFinder()
+    public void TestTriaFinder_Vertical_With_Space_Positon_1_No_Blocks_Position_1()
     {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
 
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
     }
 
     [Test]
-    public void TestGapTriaFinder()
+    public void TestTriaFinder_Vertical_With_Space_Positon_1_No_Blocks_Position_2()
     {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
 
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
     }
 
-    // Test tessera finder
     [Test]
-    public void TestTesseraFinder()
+    public void TestTriaFinder_Vertical_With_Space_Positon_1_No_Blocks_Position_3()
     {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
 
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
     }
 
     [Test]
-    public void TestBlockedTesseraFinder()
+    public void TestTriaFinder_Vertical_With_Space_Positon_2_No_Blocks_Position_1()
     {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Positon_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Positon_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Blocked_Space_Position_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Vertical_No_Space_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
 
     }
+
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_No_Space_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_1_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Vertical_With_Space_Position_2_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Horizontal_No_Space_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Positon_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Blocked_Space_Position_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_No_Space_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+        [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_1_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Horizontal_With_Space_Position_2_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Positon_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Blocked_Space_Position_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_No_Space_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[7, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_1_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[6, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_1_With_Space_Position_2_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[8, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Positon_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Blocked_Space_Position_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_No_Space_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+        [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+        [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_Two_Blocked_Ends_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[5, 5];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_Two_Blocked_Ends_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[3, 7];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_1_Two_Blocked_Ends_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[4, 6];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+
+    [Test]
+    public void TestTriaFinder_Diagonal_2_With_Space_Position_2_One_Blocked_End_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+        Node node2 = bm.nodes[2, 8];
+        node2.color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TriaCreated(node2));
+    }
+    #endregion
+
+    #region Tessera Tests
+    [Test]
+    public void TestTesseraFinder_Vertical_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,6]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,7]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,8]));
+    }
+        [Test]
+    public void TestTesseraFinder_Horizontal_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+   [Test]
+    public void TestTesseraFinder_Diagonal_1_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,8]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_No_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_No_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[4,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_No_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[3,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_No_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,6]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,7]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,8]));
+    }
+        [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+   [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,8]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_1_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_1_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[4,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_1_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[3,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_1_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,6]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,7]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,8]));
+    }
+        [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+   [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[6,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[7,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[8,8]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_2_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_2_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[4,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_2_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[3,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_One_Block_Position_2_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsTrue(bm.TesseraCreated(bm.nodes[2,8]));
+    }
+
+
+    [Test]
+    public void TestTesseraFinder_Vertical_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,6]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,7]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Vertical_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,8]));
+    }
+        [Test]
+    public void TestTesseraFinder_Horizontal_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[6,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[7,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Horizontal_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 5].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[8,5]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+   [Test]
+    public void TestTesseraFinder_Diagonal_1_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[6,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[7,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_1_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[4, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 6].color = eColor.BLACK;
+        bm.nodes[7, 7].color = eColor.BLACK;
+        bm.nodes[8, 8].color = eColor.BLACK;
+        bm.nodes[9, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[8,8]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_Two_Blocks_Position_1()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,5]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_Two_Blocks_Position_2()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[4,6]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_Two_Blocks_Position_3()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[3,7]));
+    }
+    [Test]
+    public void TestTesseraFinder_Diagonal_2_Two_Blocks_Position_4()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[6, 4].color = eColor.WHITE;
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[4, 6].color = eColor.BLACK;
+        bm.nodes[3, 7].color = eColor.BLACK;
+        bm.nodes[2, 8].color = eColor.BLACK;
+        bm.nodes[1, 9].color = eColor.WHITE;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[2,8]));
+    }
+
+    [Test]
+    public void TestTesseraFinder_No_Tessera()
+    {
+        BoardManager bm = new BoardManager();
+        bm.Init(19);
+        bm.nodes[5, 4].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+
+        //bm.CheckBoard(bm.nodes[3, 0]);
+        Assert.IsFalse(bm.TesseraCreated(bm.nodes[5,4]));
+    }
+    #endregion
 
     // Test win condition, capture more than 5
     [Test]
