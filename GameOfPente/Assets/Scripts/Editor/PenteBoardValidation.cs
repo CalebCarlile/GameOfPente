@@ -27,7 +27,7 @@ public class PenteBoardValidation
         Assert.IsTrue (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.nodes[center, center], eColor.BLACK) );
     }
 
-    [Test] public void TestMove_Black_First_Move_Not_Center ()
+    [Test] public void TestMove_Black_First_Move_Not_Center_Fail ()
     {
         BoardManager bm = new BoardManager ();
         bm.Init (19);
@@ -39,15 +39,15 @@ public class PenteBoardValidation
         BoardManager bm = new BoardManager ();
         bm.Init (19);
         int center = 19 / 2;
-        Assert.IsTrue (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 1, bm.nodes[center - 3, center - 3], eColor.BLACK) );
+        Assert.IsTrue (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.nodes[center - 3, center - 3], eColor.BLACK) );
     }
 
-    [Test] public void TestMove_Black_First_Move_Not_Tourny ()
+    [Test] public void TestMove_Black_First_Move_Not_Tourny_Fail ()
     {
         BoardManager bm = new BoardManager ();
         bm.Init (19);
         int center = 19 / 2;
-        Assert.IsFalse (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 1, bm.nodes[center - 2, center - 2], eColor.BLACK) );
+        Assert.IsFalse (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 2, bm.nodes[center - 2, center - 2], eColor.BLACK) );
     }
 
     [Test] public void TestFalseCapture_Black_Vertical ()
