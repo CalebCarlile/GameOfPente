@@ -56,28 +56,25 @@ public class BoardManager {
 
     public bool IsValidPlacement(PlayerTurn player, int turn, Node node, eColor color)
     {
+        int boardCenter = boardSize / 2;
+        
         if (node.color != eColor.EMPTY)
         {
             return false;
         }
         // Tournament Rule
-        if (turn == 0)
+        if (turn == 0 && player == PlayerTurn.BLACK_PLAYER1 
+                && (node.x != boardCenter || node.y != boardCenter) )
         {
-            int boardCenter = boardSize / 2;
-            if (player == PlayerTurn.BLACK_PLAYER1)
-            {
-                if (node.x != boardCenter || node.y != boardCenter)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (Mathf.Abs(node.x - boardCenter) < 3 || Mathf.Abs(node.y - boardCenter) < 3)
-                {
-                    return false;
-                }
-            }
+            return false;
+            
+        }
+        else if( turn == 1 && player == PlayerTurn.BLACK_PLAYER1 
+                && (Mathf.Abs(node.x - boardCenter) < 3 || Mathf.Abs(node.y - boardCenter) < 3) )
+        {
+            return false;
+            
+            
         }
         return true;
     }

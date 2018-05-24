@@ -19,6 +19,37 @@ public class PenteBoardValidation
     // Test captures, single, multiple, both players, false capture where player boxes themselves in
     // List<List<Node>>
 
+    [Test] public void TestMove_Black_First_Move_Center ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        int center = 19 / 2;
+        Assert.IsTrue (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.nodes[center, center], eColor.BLACK) );
+    }
+
+    [Test] public void TestMove_Black_First_Move_Not_Center ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        Assert.IsFalse (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 0, bm.nodes[0, 0], eColor.BLACK) );
+    }
+
+        [Test] public void TestMove_Black_Second_Move_Tourny ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        int center = 19 / 2;
+        Assert.IsTrue (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 1, bm.nodes[center - 3, center - 3], eColor.BLACK) );
+    }
+
+    [Test] public void TestMove_Black_First_Move_Not_Tourny ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        int center = 19 / 2;
+        Assert.IsFalse (bm.IsValidPlacement(PlayerTurn.BLACK_PLAYER1, 1, bm.nodes[center - 2, center - 2], eColor.BLACK) );
+    }
+
     [Test] public void TestFalseCapture_Black_Vertical ()
     {
         BoardManager bm = new BoardManager ();
@@ -40,6 +71,7 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         Assert.IsTrue (bm.FindCaptures (bm.nodes[6, 5]).Count == 0);
     }
+
     [Test] public void TestFalseCapture_White_Vertical ()
     {
         BoardManager bm = new BoardManager ();
@@ -61,6 +93,67 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         Assert.IsTrue (bm.FindCaptures (bm.nodes[6, 5]).Count == 0);
     }
+
+    [Test]
+    public void TestOverkillWin_White_Vertical ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[5, 6].color = eColor.WHITE;
+        bm.nodes[5, 7].color = eColor.WHITE;
+        bm.nodes[5, 8].color = eColor.WHITE;
+        bm.nodes[5, 9].color = eColor.WHITE;
+        bm.nodes[5, 10].color = eColor.WHITE;
+
+        Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
+    }
+
+    [Test]
+    public void TestOverkillWin_White_Horizontal ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        bm.nodes[5, 5].color = eColor.WHITE;
+        bm.nodes[6, 5].color = eColor.WHITE;
+        bm.nodes[7, 5].color = eColor.WHITE;
+        bm.nodes[8, 5].color = eColor.WHITE;
+        bm.nodes[9, 5].color = eColor.WHITE;
+        bm.nodes[10, 5].color = eColor.WHITE;
+
+        Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
+    }
+
+    [Test]
+    public void TestOverkillWin_Black_Vertical ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[5, 6].color = eColor.BLACK;
+        bm.nodes[5, 7].color = eColor.BLACK;
+        bm.nodes[5, 8].color = eColor.BLACK;
+        bm.nodes[5, 9].color = eColor.BLACK;
+        bm.nodes[5, 10].color = eColor.BLACK;
+
+        Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
+    }
+
+    [Test]
+    public void TestOverkillWin_Black_Horizontal ()
+    {
+        BoardManager bm = new BoardManager ();
+        bm.Init (19);
+        bm.nodes[5, 5].color = eColor.BLACK;
+        bm.nodes[6, 5].color = eColor.BLACK;
+        bm.nodes[7, 5].color = eColor.BLACK;
+        bm.nodes[8, 5].color = eColor.BLACK;
+        bm.nodes[9, 5].color = eColor.BLACK;
+        bm.nodes[10, 5].color = eColor.BLACK;
+
+        Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
+    }
+
     #region Black Tria Tests
     [Test]
     public void TestTriaFinder_Black_Vertical_No_Space_No_Blocks_Position_1 ()
@@ -73,7 +166,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -88,7 +180,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -103,7 +194,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -118,7 +208,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -133,7 +222,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -148,7 +236,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -163,7 +250,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -178,7 +264,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -193,7 +278,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -208,7 +292,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -223,7 +306,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -238,7 +320,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -253,7 +334,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -268,7 +348,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -283,7 +362,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -298,7 +376,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -313,7 +390,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -328,7 +404,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -344,7 +419,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -371,7 +445,7 @@ public class PenteBoardValidation
 
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
-        //bm.CheckBoard(bm.nodes[3, 0]);
+
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -386,7 +460,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -401,7 +474,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -416,7 +488,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -431,7 +502,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -446,7 +516,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -461,7 +530,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -476,7 +544,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -491,7 +558,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -506,7 +572,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -521,7 +586,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -536,7 +600,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -551,7 +614,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -566,7 +628,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -582,7 +643,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -598,7 +658,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -614,7 +673,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -630,7 +688,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -646,7 +703,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -662,7 +718,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -677,7 +732,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -692,7 +746,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -707,7 +760,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -722,7 +774,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -737,7 +788,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -752,7 +802,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -767,7 +816,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -782,7 +830,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -797,7 +844,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -812,7 +858,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -827,7 +872,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -842,7 +886,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -857,7 +900,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -872,7 +914,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -887,7 +928,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -902,7 +942,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -917,7 +956,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -932,7 +970,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -947,7 +984,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -962,7 +998,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -977,7 +1012,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -992,7 +1026,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1007,7 +1040,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1023,7 +1055,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1039,7 +1070,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1055,7 +1085,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1070,7 +1099,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1085,7 +1113,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1100,7 +1127,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1115,7 +1141,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1130,7 +1155,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1145,7 +1169,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1160,7 +1183,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1175,7 +1197,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1190,7 +1211,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1205,7 +1225,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1221,7 +1240,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1237,7 +1255,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1253,7 +1270,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1269,7 +1285,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1285,7 +1300,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1301,7 +1315,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1316,7 +1329,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1331,7 +1343,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1346,7 +1357,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1361,7 +1371,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1376,7 +1385,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1391,7 +1399,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1406,7 +1413,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1421,7 +1427,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1436,7 +1441,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1451,7 +1455,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1466,7 +1469,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -1481,7 +1483,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1496,7 +1497,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1511,7 +1511,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1526,7 +1525,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1541,7 +1539,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1556,7 +1553,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1571,7 +1567,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1586,7 +1581,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1601,7 +1595,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1616,7 +1609,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1631,7 +1623,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1646,7 +1637,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1662,7 +1652,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1678,7 +1667,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1694,7 +1682,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1709,7 +1696,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1724,7 +1710,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1739,7 +1724,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1754,7 +1738,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1769,7 +1752,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1784,7 +1766,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1799,7 +1780,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1814,7 +1794,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1829,7 +1808,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1844,7 +1822,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1860,7 +1837,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1876,7 +1852,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1892,7 +1867,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1908,7 +1882,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1924,7 +1897,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1940,7 +1912,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1955,7 +1926,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1970,7 +1940,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -1985,7 +1954,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2000,7 +1968,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2015,7 +1982,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2030,7 +1996,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2045,7 +2010,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2060,7 +2024,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2075,7 +2038,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2090,7 +2052,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2105,7 +2066,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -2120,7 +2080,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2135,7 +2094,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2150,7 +2108,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2165,7 +2122,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2180,7 +2136,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2195,7 +2150,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2210,7 +2164,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2225,7 +2178,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2240,7 +2192,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2255,7 +2206,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2270,7 +2220,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2285,7 +2234,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2301,7 +2249,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2317,7 +2264,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2333,7 +2279,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2348,7 +2293,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2363,7 +2307,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2378,7 +2321,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2393,7 +2335,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2408,7 +2349,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2423,7 +2363,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2438,7 +2377,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2453,7 +2391,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2468,7 +2405,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2483,7 +2419,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2499,7 +2434,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2515,7 +2449,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2531,7 +2464,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2547,7 +2479,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2563,7 +2494,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2579,7 +2509,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2594,7 +2523,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -2609,7 +2537,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
     #endregion
@@ -2625,7 +2552,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2639,7 +2565,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -2653,7 +2578,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -2667,7 +2591,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -2681,7 +2604,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2695,7 +2617,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -2709,7 +2630,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -2723,7 +2643,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -2737,7 +2656,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2751,7 +2669,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -2765,7 +2682,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -2779,7 +2695,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -2793,7 +2708,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2807,7 +2721,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -2821,7 +2734,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -2835,7 +2747,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -2850,7 +2761,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2865,7 +2775,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -2880,7 +2789,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -2895,7 +2803,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -2910,7 +2817,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2925,7 +2831,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -2940,7 +2845,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -2955,7 +2859,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.BLACK;
         bm.nodes[8, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -2970,7 +2873,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -2985,7 +2887,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -3000,7 +2901,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -3015,7 +2915,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.BLACK;
         bm.nodes[8, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -3030,7 +2929,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3045,7 +2943,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -3060,7 +2957,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -3075,7 +2971,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.BLACK;
         bm.nodes[2, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -3090,7 +2985,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3105,7 +2999,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -3120,7 +3013,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -3135,7 +3027,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -3150,7 +3041,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3165,7 +3055,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -3180,7 +3069,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -3195,7 +3083,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -3210,7 +3097,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3225,7 +3111,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -3240,7 +3125,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -3255,7 +3139,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -3270,7 +3153,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3285,7 +3167,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -3300,7 +3181,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -3315,7 +3195,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -3331,7 +3210,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3347,7 +3225,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -3363,7 +3240,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -3379,7 +3255,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -3395,7 +3270,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3411,7 +3285,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -3427,7 +3300,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -3443,7 +3315,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -3459,7 +3330,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3475,7 +3345,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -3491,7 +3360,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -3507,7 +3375,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -3523,7 +3390,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -3539,7 +3405,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -3555,7 +3420,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -3571,7 +3435,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -3585,7 +3448,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.BLACK;
         bm.nodes[5, 8].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 4]));
     }
     #endregion
@@ -3602,7 +3464,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3617,7 +3478,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3632,7 +3492,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3647,7 +3506,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3662,7 +3520,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3677,7 +3534,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3692,7 +3548,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3707,7 +3562,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3722,7 +3576,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -3737,7 +3590,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3752,7 +3604,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3767,7 +3618,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3782,7 +3632,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3797,7 +3646,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3812,7 +3660,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3827,7 +3674,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3842,7 +3688,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3857,7 +3702,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3873,7 +3717,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3900,7 +3743,7 @@ public class PenteBoardValidation
 
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
-        //bm.CheckBoard(bm.nodes[3, 0]);
+
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3915,7 +3758,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3930,7 +3772,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3945,7 +3786,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3960,7 +3800,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3975,7 +3814,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -3990,7 +3828,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4005,7 +3842,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4020,7 +3856,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4035,7 +3870,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4050,7 +3884,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4065,7 +3898,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4080,7 +3912,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4095,7 +3926,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4111,7 +3941,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4127,7 +3956,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4143,7 +3971,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4159,7 +3986,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4175,7 +4001,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4191,7 +4016,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4206,7 +4030,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4221,7 +4044,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4236,7 +4058,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4251,7 +4072,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4266,7 +4086,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4281,7 +4100,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4296,7 +4114,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4311,7 +4128,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4326,7 +4142,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4341,7 +4156,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4356,7 +4170,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4371,7 +4184,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4386,7 +4198,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4401,7 +4212,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4416,7 +4226,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4431,7 +4240,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4446,7 +4254,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4461,7 +4268,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4476,7 +4282,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4491,7 +4296,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4506,7 +4310,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4521,7 +4324,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4536,7 +4338,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4552,7 +4353,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4568,7 +4368,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4584,7 +4383,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4599,7 +4397,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4614,7 +4411,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4629,7 +4425,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4644,7 +4439,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4659,7 +4453,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4674,7 +4467,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4689,7 +4481,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4704,7 +4495,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4719,7 +4509,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4734,7 +4523,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4750,7 +4538,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4766,7 +4553,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4782,7 +4568,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4798,7 +4583,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4814,7 +4598,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4830,7 +4613,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4845,7 +4627,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4860,7 +4641,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -4875,7 +4655,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4890,7 +4669,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4905,7 +4683,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4920,7 +4697,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4935,7 +4711,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4950,7 +4725,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4965,7 +4739,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4980,7 +4753,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -4995,7 +4767,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5010,7 +4781,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5025,7 +4795,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5040,7 +4809,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5055,7 +4823,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5070,7 +4837,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5085,7 +4851,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5100,7 +4865,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5115,7 +4879,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5130,7 +4893,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5145,7 +4907,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5160,7 +4921,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5175,7 +4935,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5191,7 +4950,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5207,7 +4965,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5223,7 +4980,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5238,7 +4994,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5253,7 +5008,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5268,7 +5022,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5283,7 +5036,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5298,7 +5050,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5313,7 +5064,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5328,7 +5078,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5343,7 +5092,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5358,7 +5106,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5373,7 +5120,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5389,7 +5135,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5405,7 +5150,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5421,7 +5165,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5437,7 +5180,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5453,7 +5195,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[7, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5469,7 +5210,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5484,7 +5224,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[6, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5499,7 +5238,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[8, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5514,7 +5252,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5529,7 +5266,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5544,7 +5280,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5559,7 +5294,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5574,7 +5308,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5589,7 +5322,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5604,7 +5336,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5619,7 +5350,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5634,7 +5364,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TriaCreated (node2));
     }
 
@@ -5649,7 +5378,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5664,7 +5392,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5679,7 +5406,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5694,7 +5420,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5709,7 +5434,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5724,7 +5448,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5739,7 +5462,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5754,7 +5476,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5769,7 +5490,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5784,7 +5504,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5799,7 +5518,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5814,7 +5532,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5830,7 +5547,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5846,7 +5562,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5862,7 +5577,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5877,7 +5591,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5892,7 +5605,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5907,7 +5619,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5922,7 +5633,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5937,7 +5647,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5952,7 +5661,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5967,7 +5675,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5982,7 +5689,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -5997,7 +5703,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6012,7 +5717,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6028,7 +5732,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6044,7 +5747,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6060,7 +5762,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6076,7 +5777,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[5, 5];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6092,7 +5792,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[3, 7];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6108,7 +5807,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6123,7 +5821,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[4, 6];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
 
@@ -6138,7 +5835,6 @@ public class PenteBoardValidation
         Node node2 = bm.nodes[2, 8];
         node2.color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TriaCreated (node2));
     }
     #endregion
@@ -6154,7 +5850,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6168,7 +5863,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -6182,7 +5876,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -6196,7 +5889,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -6210,7 +5902,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6224,7 +5915,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -6238,7 +5928,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -6252,7 +5941,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -6266,7 +5954,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6280,7 +5967,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -6294,7 +5980,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -6308,7 +5993,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -6322,7 +6006,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6336,7 +6019,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -6350,7 +6032,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -6364,7 +6045,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -6379,7 +6059,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6394,7 +6073,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -6409,7 +6087,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -6424,7 +6101,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -6439,7 +6115,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6454,7 +6129,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -6469,7 +6143,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -6484,7 +6157,6 @@ public class PenteBoardValidation
         bm.nodes[7, 5].color = eColor.WHITE;
         bm.nodes[8, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -6499,7 +6171,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6514,7 +6185,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -6529,7 +6199,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -6544,7 +6213,6 @@ public class PenteBoardValidation
         bm.nodes[7, 7].color = eColor.WHITE;
         bm.nodes[8, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -6559,7 +6227,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6574,7 +6241,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -6589,7 +6255,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -6604,7 +6269,6 @@ public class PenteBoardValidation
         bm.nodes[3, 7].color = eColor.WHITE;
         bm.nodes[2, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -6619,7 +6283,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6634,7 +6297,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -6649,7 +6311,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -6664,7 +6325,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -6679,7 +6339,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6694,7 +6353,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -6709,7 +6367,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -6724,7 +6381,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -6739,7 +6395,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6754,7 +6409,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -6769,7 +6423,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -6784,7 +6437,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -6799,7 +6451,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6814,7 +6465,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -6829,7 +6479,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -6844,7 +6493,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -6860,7 +6508,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6876,7 +6523,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 6]));
     }
 
@@ -6892,7 +6538,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 7]));
     }
 
@@ -6908,7 +6553,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 8]));
     }
 
@@ -6924,7 +6568,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -6940,7 +6583,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[6, 5]));
     }
 
@@ -6956,7 +6598,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[7, 5]));
     }
 
@@ -6972,7 +6613,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[8, 5]));
     }
 
@@ -6988,7 +6628,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -7004,7 +6643,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[6, 6]));
     }
 
@@ -7020,7 +6658,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[7, 7]));
     }
 
@@ -7036,7 +6673,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[8, 8]));
     }
 
@@ -7052,7 +6688,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 5]));
     }
 
@@ -7068,7 +6703,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[4, 6]));
     }
 
@@ -7084,7 +6718,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[3, 7]));
     }
 
@@ -7100,7 +6733,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[2, 8]));
     }
 
@@ -7114,7 +6746,6 @@ public class PenteBoardValidation
         bm.nodes[5, 7].color = eColor.WHITE;
         bm.nodes[5, 8].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsFalse (bm.TesseraCreated (bm.nodes[5, 4]));
     }
     #endregion
@@ -7131,7 +6762,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7146,7 +6776,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -7161,7 +6790,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -7176,7 +6804,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -7191,7 +6818,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -7206,7 +6832,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7221,7 +6846,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -7236,7 +6860,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -7251,7 +6874,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -7266,7 +6888,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -7281,7 +6902,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7296,7 +6916,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -7311,7 +6930,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -7326,7 +6944,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -7341,7 +6958,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -7356,7 +6972,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7371,7 +6986,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -7386,7 +7000,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -7401,7 +7014,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -7416,7 +7028,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -7432,7 +7043,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7448,7 +7058,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -7464,7 +7073,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -7480,7 +7088,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -7496,7 +7103,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.WHITE;
         bm.nodes[5, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -7512,7 +7118,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7528,7 +7133,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -7544,7 +7148,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -7560,7 +7163,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -7576,7 +7178,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.WHITE;
         bm.nodes[9, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -7592,7 +7193,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7608,7 +7208,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -7624,7 +7223,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -7640,7 +7238,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -7656,7 +7253,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.WHITE;
         bm.nodes[9, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -7672,7 +7268,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7688,7 +7283,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -7704,7 +7298,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -7720,7 +7313,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -7736,7 +7328,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.WHITE;
         bm.nodes[1, 9].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -7752,7 +7343,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7768,7 +7358,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -7784,7 +7373,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -7800,7 +7388,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -7816,7 +7403,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -7832,7 +7418,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.WHITE;
         bm.nodes[10, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7848,7 +7433,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.WHITE;
         bm.nodes[10, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -7864,7 +7448,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.WHITE;
         bm.nodes[10, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -7880,7 +7463,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.WHITE;
         bm.nodes[10, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -7896,7 +7478,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.WHITE;
         bm.nodes[10, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -7912,7 +7493,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.WHITE;
         bm.nodes[10, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -7928,7 +7508,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.WHITE;
         bm.nodes[10, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -7944,7 +7523,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.WHITE;
         bm.nodes[10, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -7960,7 +7538,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.WHITE;
         bm.nodes[10, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -7976,7 +7553,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.WHITE;
         bm.nodes[10, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -7992,7 +7568,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.WHITE;
         bm.nodes[0, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8008,7 +7583,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.WHITE;
         bm.nodes[0, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -8024,7 +7598,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.WHITE;
         bm.nodes[0, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -8040,7 +7613,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.WHITE;
         bm.nodes[0, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -8056,7 +7628,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.WHITE;
         bm.nodes[0, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -8073,7 +7644,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8090,7 +7660,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -8107,7 +7676,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -8124,7 +7692,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -8141,7 +7708,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -8158,7 +7724,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.BLACK;
         bm.nodes[4, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8175,7 +7740,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.BLACK;
         bm.nodes[4, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -8192,7 +7756,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.BLACK;
         bm.nodes[4, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -8209,7 +7772,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.BLACK;
         bm.nodes[4, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -8226,7 +7788,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.BLACK;
         bm.nodes[4, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -8243,7 +7804,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.BLACK;
         bm.nodes[4, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8260,7 +7820,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.BLACK;
         bm.nodes[4, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -8277,7 +7836,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.BLACK;
         bm.nodes[4, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -8294,7 +7852,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.BLACK;
         bm.nodes[4, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -8311,7 +7868,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.BLACK;
         bm.nodes[4, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -8328,7 +7884,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.BLACK;
         bm.nodes[6, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8345,7 +7900,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.BLACK;
         bm.nodes[6, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -8362,7 +7916,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.BLACK;
         bm.nodes[6, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -8379,7 +7932,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.BLACK;
         bm.nodes[6, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -8396,7 +7948,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.BLACK;
         bm.nodes[6, 4].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
     #endregion
@@ -8413,7 +7964,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8428,7 +7978,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -8443,7 +7992,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -8458,7 +8006,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -8473,7 +8020,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -8488,7 +8034,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8503,7 +8048,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -8518,7 +8062,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -8533,7 +8076,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -8548,7 +8090,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -8563,7 +8104,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8578,7 +8118,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -8593,7 +8132,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -8608,7 +8146,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -8623,7 +8160,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -8638,7 +8174,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8653,7 +8188,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -8668,7 +8202,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -8683,7 +8216,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -8698,7 +8230,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -8714,7 +8245,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8730,7 +8260,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -8746,7 +8275,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -8762,7 +8290,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -8778,7 +8305,6 @@ public class PenteBoardValidation
         bm.nodes[5, 8].color = eColor.BLACK;
         bm.nodes[5, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -8794,7 +8320,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8810,7 +8335,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -8826,7 +8350,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -8842,7 +8365,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -8858,7 +8380,6 @@ public class PenteBoardValidation
         bm.nodes[8, 5].color = eColor.BLACK;
         bm.nodes[9, 5].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -8874,7 +8395,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8890,7 +8410,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -8906,7 +8425,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -8922,7 +8440,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -8938,7 +8455,6 @@ public class PenteBoardValidation
         bm.nodes[8, 8].color = eColor.BLACK;
         bm.nodes[9, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -8954,7 +8470,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -8970,7 +8485,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -8986,7 +8500,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -9002,7 +8515,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -9018,7 +8530,6 @@ public class PenteBoardValidation
         bm.nodes[2, 8].color = eColor.BLACK;
         bm.nodes[1, 9].color = eColor.BLACK;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -9034,7 +8545,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9050,7 +8560,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -9066,7 +8575,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -9082,7 +8590,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -9098,7 +8605,6 @@ public class PenteBoardValidation
         bm.nodes[5, 9].color = eColor.BLACK;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -9114,7 +8620,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.BLACK;
         bm.nodes[10, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9130,7 +8635,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.BLACK;
         bm.nodes[10, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -9146,7 +8650,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.BLACK;
         bm.nodes[10, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -9162,7 +8665,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.BLACK;
         bm.nodes[10, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -9178,7 +8680,6 @@ public class PenteBoardValidation
         bm.nodes[9, 5].color = eColor.BLACK;
         bm.nodes[10, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -9194,7 +8695,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.BLACK;
         bm.nodes[10, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9210,7 +8710,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.BLACK;
         bm.nodes[10, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -9226,7 +8725,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.BLACK;
         bm.nodes[10, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -9242,7 +8740,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.BLACK;
         bm.nodes[10, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -9258,7 +8755,6 @@ public class PenteBoardValidation
         bm.nodes[9, 9].color = eColor.BLACK;
         bm.nodes[10, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -9274,7 +8770,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.BLACK;
         bm.nodes[0, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9290,7 +8785,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.BLACK;
         bm.nodes[0, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -9306,7 +8800,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.BLACK;
         bm.nodes[0, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -9322,7 +8815,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.BLACK;
         bm.nodes[0, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -9338,7 +8830,6 @@ public class PenteBoardValidation
         bm.nodes[1, 9].color = eColor.BLACK;
         bm.nodes[0, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
 
@@ -9355,7 +8846,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9372,7 +8862,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 6]));
     }
 
@@ -9389,7 +8878,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 7]));
     }
 
@@ -9406,7 +8894,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 8]));
     }
 
@@ -9423,7 +8910,6 @@ public class PenteBoardValidation
         bm.nodes[5, 4].color = eColor.WHITE;
         bm.nodes[5, 10].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 9]));
     }
 
@@ -9440,7 +8926,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.WHITE;
         bm.nodes[4, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9457,7 +8942,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.WHITE;
         bm.nodes[4, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 5]));
     }
 
@@ -9474,7 +8958,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.WHITE;
         bm.nodes[4, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 5]));
     }
 
@@ -9491,7 +8974,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.WHITE;
         bm.nodes[4, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 5]));
     }
 
@@ -9508,7 +8990,6 @@ public class PenteBoardValidation
         bm.nodes[10, 5].color = eColor.WHITE;
         bm.nodes[4, 5].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 5]));
     }
 
@@ -9525,7 +9006,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.WHITE;
         bm.nodes[4, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9542,7 +9022,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.WHITE;
         bm.nodes[4, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[6, 6]));
     }
 
@@ -9559,7 +9038,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.WHITE;
         bm.nodes[4, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[7, 7]));
     }
 
@@ -9576,7 +9054,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.WHITE;
         bm.nodes[4, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[8, 8]));
     }
 
@@ -9593,7 +9070,6 @@ public class PenteBoardValidation
         bm.nodes[10, 10].color = eColor.WHITE;
         bm.nodes[4, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[9, 9]));
     }
 
@@ -9610,7 +9086,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.WHITE;
         bm.nodes[6, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[5, 5]));
     }
 
@@ -9627,7 +9102,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.WHITE;
         bm.nodes[6, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[4, 6]));
     }
 
@@ -9644,7 +9118,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.WHITE;
         bm.nodes[6, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[3, 7]));
     }
 
@@ -9661,7 +9134,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.WHITE;
         bm.nodes[6, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[2, 8]));
     }
 
@@ -9678,7 +9150,6 @@ public class PenteBoardValidation
         bm.nodes[0, 10].color = eColor.WHITE;
         bm.nodes[6, 4].color = eColor.WHITE;
 
-        //bm.CheckBoard(bm.nodes[3, 0]);
         Assert.IsTrue (bm.WonGame (bm.nodes[1, 9]));
     }
     #endregion
