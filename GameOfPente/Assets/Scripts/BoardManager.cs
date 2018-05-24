@@ -57,7 +57,6 @@ public class BoardManager {
     public bool IsValidPlacement(PlayerTurn player, int turn, Node node, eColor color)
     {
         int boardCenter = boardSize / 2;
-
         if (node.color != eColor.EMPTY)
         {
             return false;
@@ -70,7 +69,7 @@ public class BoardManager {
             
         }
         else if( turn == 2 && player == PlayerTurn.BLACK_PLAYER1 
-                && (Mathf.Abs(node.x - boardCenter) < 3 || Mathf.Abs(node.y - boardCenter) < 3) )
+                && (Mathf.Abs(node.x - boardCenter) < 3 && Mathf.Abs(node.y - boardCenter) < 3) )
         {
             return false;
             
