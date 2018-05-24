@@ -80,6 +80,7 @@ public class BoardManagerBehavior: MonoBehaviour
 
     public void CheckBoard(NodeBehavior last)
     {
+        TurnManager turnManager = TurnManager.Instance;
         if (boardManager.WonGame(last.node))
         {
             print(last.Color + " WON!");
@@ -88,6 +89,30 @@ public class BoardManagerBehavior: MonoBehaviour
         foreach (Node capture in boardManager.FindCaptures(last.node))
         {
             capture.color = eColor.EMPTY;
+            switch(turnManager.playerTurn)
+            {
+                case PlayerTurn.BLACK_PLAYER1:
+                    turnManager.p1.captureCount++;
+                    break;
+                case PlayerTurn.WHITE_PLAYER2:
+                    turnManager.p2.captureCount++;
+                    break;
+            }
+        }
+        switch(turnManager.playerTurn)
+        {
+            case PlayerTurn.BLACK_PLAYER1:
+                if(turnManager.p1.captureCount >= 10)
+                {
+                    print(last.Color + " WON!");
+                }
+                break;
+            case PlayerTurn.WHITE_PLAYER2:
+                if(turnManager.p2.captureCount >= 10)
+                {
+                    print(last.Color + " WON!");
+                }
+                break;
         }
         if (boardManager.TesseraCreated(last.node))
         {
