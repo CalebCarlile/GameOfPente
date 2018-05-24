@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using SFB;
 
 public class BoardManagerBehavior: MonoBehaviour
 {
@@ -148,7 +148,7 @@ public class BoardManagerBehavior: MonoBehaviour
 
     public void Save()
     {
-        string savePath = EditorUtility.SaveFilePanel("Save Game", "", "Game", "pente");
+        string savePath = StandaloneFileBrowser.SaveFilePanel("Save Game", "", "Game", "pente");
         if (savePath != "")
         {
             boardManager.SaveNodesToFile(savePath);
@@ -157,7 +157,7 @@ public class BoardManagerBehavior: MonoBehaviour
 
     public void Load()
     {
-        string loadPath = EditorUtility.OpenFilePanel("Load Game", "", "pente");
+        string loadPath = StandaloneFileBrowser.OpenFilePanel("Load Game", "", "pente", false)[0];
         if (loadPath != "")
         {
             boardManager.LoadNodesFromFile(loadPath);
