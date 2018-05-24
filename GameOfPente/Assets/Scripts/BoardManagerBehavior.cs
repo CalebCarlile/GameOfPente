@@ -115,13 +115,15 @@ public class BoardManagerBehavior: MonoBehaviour
             case PlayerTurn.BLACK_PLAYER1:
                 if(turnManager.p1.captureCount >= 10)
                 {
-                    print(last.Color + " WON!");
+                    eyeCandy.Notify(last.transform.position, last.Color + " WON!", 60, 1, Vector2.up * 1, winColor);
+                    SceneManager.LoadScene("UIProto");
                 }
                 break;
             case PlayerTurn.WHITE_PLAYER2:
                 if(turnManager.p2.captureCount >= 10)
                 {
-                    print(last.Color + " WON!");
+                    eyeCandy.Notify(last.transform.position, last.Color + " WON!", 60, 1, Vector2.up * 1, winColor);
+                    SceneManager.LoadScene("UIProto");
                 }
                 break;
         }
