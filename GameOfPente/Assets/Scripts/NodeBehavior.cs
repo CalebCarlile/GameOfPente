@@ -8,10 +8,13 @@ public class NodeBehavior : MonoBehaviour
 	public SpriteRenderer spriteRenderer = null;
     [SerializeField] public Node node;
 
+	private TurnManager turnManager;
+
 	void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		Color = eColor.EMPTY;
+		turnManager = TurnManager.Instance;
 	}
 	
 	private eColor color;
@@ -55,7 +58,7 @@ public class NodeBehavior : MonoBehaviour
 		if (Color == eColor.EMPTY)
 		{
 			eColor curPlayerColor = eColor.EMPTY;
-			switch(TurnManager.Instance.playerTurn)
+			switch(turnManager.playerTurn)
 			{
 				case PlayerTurn.BLACK_PLAYER1:
 					curPlayerColor = eColor.B_HOVER;
@@ -79,7 +82,7 @@ public class NodeBehavior : MonoBehaviour
 		if (Color == eColor.W_HOVER || Color == eColor.B_HOVER)
 		{
 			eColor curPlayerColor = eColor.EMPTY;
-			switch(TurnManager.Instance.playerTurn)
+			switch(turnManager.playerTurn)
 			{
 				case PlayerTurn.BLACK_PLAYER1:
 					curPlayerColor = eColor.BLACK;
@@ -91,7 +94,7 @@ public class NodeBehavior : MonoBehaviour
 			Color = curPlayerColor;
             node.color = curPlayerColor;
             GameObject.FindGameObjectWithTag("GameController").GetComponent<BoardManagerBehavior>().CheckBoard(this);
-			TurnManager.Instance.NextTurn();
+			turnManager.NextTurn();
         }
     }
 

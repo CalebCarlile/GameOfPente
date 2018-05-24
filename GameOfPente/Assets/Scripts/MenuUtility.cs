@@ -12,6 +12,9 @@ public class MenuUtility : MonoBehaviour
 
 	[SerializeField] Slider boardSlider;
 
+	[SerializeField] Text player1Text;
+	[SerializeField] Text player2Text;
+
 	public static int boardSize = 9;
 	public void ChangeToSceneN()
 	{
@@ -22,6 +25,12 @@ public class MenuUtility : MonoBehaviour
 	{
 		TurnManager.Instance.p1.playerType = PlayerType.HUMAN;
 		TurnManager.Instance.p2.playerType = PlayerType.HUMAN;
+		TurnManager.Instance.p1.name = player1Text.text;
+		TurnManager.Instance.p2.name = player2Text.text;
+		if(TurnManager.Instance.p1.name.Length == 0)
+			TurnManager.Instance.p1.name = "Player 1";
+		if(TurnManager.Instance.p2.name.Length == 0)
+			TurnManager.Instance.p2.name = "Player 2";
 		ChangeToSceneN();
 	}
 
@@ -29,6 +38,10 @@ public class MenuUtility : MonoBehaviour
 	{
 		TurnManager.Instance.p1.playerType = PlayerType.HUMAN;
 		TurnManager.Instance.p2.playerType = PlayerType.COMPUTER;
+		TurnManager.Instance.p1.name = player1Text.text;
+		if(TurnManager.Instance.p1.name.Length == 0)
+			TurnManager.Instance.p1.name = "Player 1";
+		TurnManager.Instance.p2.name = "Computer";		
 		ChangeToSceneN();
 	}
 
